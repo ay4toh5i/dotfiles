@@ -1,0 +1,9 @@
+[[plungins]]  
+repo = 'Shougo/dein.vim'
+              
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml' 
+
+[[plugins]] # file browse
+repo = 'Shougo/unite.vim'
