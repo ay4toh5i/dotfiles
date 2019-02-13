@@ -1,11 +1,15 @@
 #!/bin/bash
 
-echo "hello console"
+echo "Installing..."
 
-for file in ./.??* 
+echo "Deploying dotfiles.."
+
+for file in .??* 
 do
-  [ ${file}=".git" ] && continue
-  [ ${file}=".gitignore" ] && continue
+
+  [[ ${file} == ".git" ]] && continue
+  [[ ${file} == ".gitignore" ]] && continue
 	ln -snfv ${HOME}/dotfiles/${file} ${HOME}/${file}
-	echo "${file}"
+	echo $file
+
 done
