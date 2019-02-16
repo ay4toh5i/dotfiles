@@ -1,1 +1,1 @@
-bash -c "$(curl -fsSL raw.githubusercontent/HighGreat/dotfiles/master/init.sh)"
+bash -c "$(curl -fsSL raw.githubusercontent.com/HighGreat/dotfiles/master/init.sh)"
