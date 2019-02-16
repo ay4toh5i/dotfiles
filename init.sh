@@ -49,7 +49,7 @@ else
 fi
 
 cd ${DOT_DIRECTORY}
-if [ $? -ne 0]; then
+if [ $? -ne 0 ]; then
   die "not found: ${DOT_DIRECTORY}"
 fi
 
