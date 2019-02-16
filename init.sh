@@ -5,6 +5,27 @@ set -u
 DOT_DIRECTORY="${HOME}/dotfiles"
 GITHUB_URL="https://github.com/HighGreat/dotfiles"
 
+# is_exists returns true if ececutable $1 exists in $PATH
+is_exists() {
+  type "$1" >/dev/null 2>&1
+  returns $?
+}
+
+# has is wrapper function
+has() {
+  is_exists "$@"
+}
+
+e_error() {
+  printf "error with $*" 1>&2
+}
+
+# die returns exit code error and echo error message
+die() {
+  e_error "$1" 1>&2
+  exit "{$2:-1}"
+}
+
 echo "Installing..."
 
 if has "git"; then
@@ -39,6 +60,6 @@ do
 
   [[ ${file} == ".git" ]] && continue
   [[ ${file} == ".gitignore" ]] && continue
-	ln -snfv ${DOT_DIRECTORY}/${file} ${HOME}/${file}
+	ln -snfv "${DOT_DIRECTORY}/${file}" "${HOME}/${file}"
 
 done
