@@ -40,7 +40,7 @@ elif has "curl" || has "wget"; then
   elif has "wget"; then
     wget -O - ${tarball}
 
-  fi | tar xv -
+  fi | tar xvz 
 
   mv -f dotfiles-master ${DOT_DIRECTORY}
 
