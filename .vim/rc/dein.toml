@@ -7,3 +7,6 @@ on_ft = 'toml'
 
 [[plugins]] # file browse
 repo = 'Shougo/unite.vim'
+
+[[plugins]]# color scheme
+repo = 'altercation/vim-colors-solarized'
