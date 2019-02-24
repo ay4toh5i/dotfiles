@@ -104,5 +104,8 @@ endif
 filetype plugin indent on
 syntax enable
 
+" color scheme
 set background=dark
 colorscheme solarized
+" map esc
+inoremap <silent> jj <ESC>
