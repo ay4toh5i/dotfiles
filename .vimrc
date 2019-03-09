@@ -105,7 +105,7 @@ filetype plugin indent on
 syntax enable
 
 " color scheme
-set background=dark
+set background=light " or dark
 colorscheme solarized
 " map esc
 inoremap <silent> jj <ESC>

@@ -8,5 +8,11 @@ on_ft = 'toml'
 [[plugins]] # file browse
 repo = 'Shougo/unite.vim'
 
-[[plugins]]# color scheme
+[[plugins]] # color scheme
 repo = 'altercation/vim-colors-solarized'
+
+[[plugins]] # Asynchronous Lint Engine
+repo = 'w0rp/ale'
+
+[[plugins]] # statusline plugin
+repo = 'itchyny/lightline.vim'
