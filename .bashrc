@@ -75,7 +75,8 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    #alias ls='ls --color=auto'
+    alias ls='ls -FG'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -88,7 +89,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -alFG'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -116,8 +117,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+alias ls='ls -FG'
+alias ll='ls -alFG'
+
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-# It will look for a gemfile in the current directory (and deeper directories too).
-RUBYGEMS_GEMDEPS=-
