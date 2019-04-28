@@ -1,4 +1,4 @@
-[[plungins]]  
+[[plungins]] # pgugin manager
 repo = 'Shougo/dein.vim'
               
 [[plugins]] # toml syntax
@@ -11,8 +11,39 @@ repo = 'Shougo/unite.vim'
 [[plugins]] # color scheme
 repo = 'altercation/vim-colors-solarized'
 
+[[plugins]] # color scheme
+repo = 'cocopon/iceberg.vim'
+
 [[plugins]] # Asynchronous Lint Engine
 repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_fixers = {
+\  'ruby': ['rubocup'],
+\}
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '×'
+let g:ale_sign_warning = '⚠︎'
+'''
 
 [[plugins]] # statusline plugin
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'iceberg',
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
+'''
+
+[[plugins]] # complete pairs
+repo = 'tpope/vim-surround'
+
+[[plugins]] # file system explorer
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeShowHidden = 1
+'''
+
+[[plugins]] # nerdtree plugin
+repo = 'jistr/vim-nerdtree-tabs'
