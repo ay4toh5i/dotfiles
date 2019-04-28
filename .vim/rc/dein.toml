@@ -8,11 +8,26 @@ on_ft = 'toml'
 [[plugins]] # file browse
 repo = 'Shougo/unite.vim'
 
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]] # require for deoplete
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]] # require for deoplete
+repo = 'roxma/nvim-yarp'
+
 [[plugins]] # color scheme
 repo = 'altercation/vim-colors-solarized'
 
 [[plugins]] # color scheme
 repo = 'cocopon/iceberg.vim'
+
+[[plugins]] # iceberg for lightline
+repo = 'hallzy/lightline-iceberg'
 
 [[plugins]] # Asynchronous Lint Engine
 repo = 'w0rp/ale'
@@ -61,6 +76,12 @@ let g:NERDTreeShowHidden = 1
 
 [[plugins]] # nerdtree plugin
 repo = 'jistr/vim-nerdtree-tabs'
+
+[[plugins]] # nerdtree plugin
+repo = 'Xuyuanp/nerdtree-git-plugin'
+
+[[plugins]] # git plugin
+repo = "airblade/vim-gitgutter"
 
 [[plugins]] #  help to end
 repo = 'tpope/vim-endwise'
