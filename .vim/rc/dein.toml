@@ -30,9 +30,23 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
       \ 'colorscheme': 'iceberg',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive'
+      \ },
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
+function! LightlineFugitive()
+  if exists('*fugitive#head')
+    let branch = fugitive#head()
+    return branch !=# '' ? ''.branch : ''
+  endif
+  return ''
+endfunction
 '''
 
 [[plugins]] # complete pairs
@@ -47,3 +61,19 @@ let g:NERDTreeShowHidden = 1
 
 [[plugins]] # nerdtree plugin
 repo = 'jistr/vim-nerdtree-tabs'
+
+[[plugins]] #  help to end
+repo = 'tpope/vim-endwise'
+
+[[plugins]] # git
+repo = 'tpope/vim-fugitive'
+
+[[plugins]] # help to tag end
+repo = 'alvan/vim-closetag'
+
+[[plugins]] # create my vim cheatsheet
+# :Cheat -> show cheatsheet
+repo = 'reireias/vim-cheatsheet'
+hook_add = '''
+let g:cheatsheet#cheat_file = "cheatsheet.md"
+'''

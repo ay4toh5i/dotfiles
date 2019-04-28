@@ -40,9 +40,6 @@ endif
 let mapleader = "\<Space>"
 
 " NERDTree setting
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 " setting
@@ -58,11 +55,15 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
+" ステータスラインを表示させる
+set laststatus=2
 " クリップボードを使えるようにする
 set clipboard+=unnamed
 " マウスを使えるようにする
 set mouse=a
 set ttymouse=xterm2
+" バックスペースの動作設定
+set backspace=indent,eol,start
 
 " 見た目系
 " 行番号を表示
