@@ -15,9 +15,6 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -117,6 +114,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# for setting history length see HISTSIZE and HISTFILESIZE in bash
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# prompt
+usr='\[\e[1;32m\]\u\[\e[0m\]'
+dir='\[\e[1;34m\]\w\[\e[0m\]'
+cmd='\[\e[1;31m\]>\[\e[0m\]'
+export PS1="\n${usr}:${dir}\n${cmd} "
+
+# Alias for mac
 alias ls='ls -FG'
 alias ll='ls -alFG'
 
