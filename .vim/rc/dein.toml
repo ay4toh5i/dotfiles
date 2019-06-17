@@ -96,5 +96,5 @@ repo = 'alvan/vim-closetag'
 # :Cheat -> show cheatsheet
 repo = 'reireias/vim-cheatsheet'
 hook_add = '''
-let g:cheatsheet#cheat_file = "cheatsheet.md"
+let g:cheatsheet#cheat_file = "~/cheatsheet.md"
 '''
