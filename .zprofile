@@ -33,10 +33,12 @@ setopt inc_append_history
 # インクリメンタルからの検索
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
+# コマンドラインでのコメントを有効
+setopt interactivecomments
 
 # 環境変数
 export PHTH="/usr/local/Cellar/mysql/8.0.15/lib:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+#export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
