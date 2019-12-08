@@ -69,7 +69,7 @@ set backspace=indent,eol,start
 " 行番号を表示
 set number
 " 現在の行を強調表示
-set cursorline
+" set cursorline
 " 現在の行を強調表示（縦）
 set cursorcolumn
 " 行末の1文字先までカーソルを移動できるように
@@ -126,3 +126,9 @@ colorscheme iceberg
 
 " map esc
 inoremap <silent> jj <ESC>
+
+" insert mode でemacsのキーバインドで移動
+imap <C-p> <Up>
+imap <C-n> <Down>
+imap <C-b> <Left>
+imap <C-f> <Right>
