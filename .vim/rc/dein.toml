@@ -98,16 +98,3 @@ repo = 'reireias/vim-cheatsheet'
 hook_add = '''
 let g:cheatsheet#cheat_file = "~/cheatsheet.md"
 '''
-
-[[plugins]] # golang
-repo = 'fatih/vim-go'
-on_ft = 'go'
-hook_add = '''
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-'''
-
-[[plugins]] # complete go
-repo = 'zchee/deoplete-go'
-on_ft = 'go'
