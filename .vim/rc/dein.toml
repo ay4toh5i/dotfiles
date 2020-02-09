@@ -201,3 +201,6 @@ let g:lightline = {
 	  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 	endfunction
 '''
+
+[[plugins]]
+repo = 'tpope/vim-commentary'

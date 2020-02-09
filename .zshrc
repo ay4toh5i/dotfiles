@@ -1,6 +1,6 @@
 # pure - zsh simple prompt (https://github.com/sindresorhus/pure)
-autoload -U promptinit; promptinit
-prompt pure
+# autoload -U promptinit; promptinit
+# prompt pure
 
 # Alias for mac
 alias ls='ls -FG'
@@ -19,4 +19,31 @@ export PATH="$GOPATH/bin:$PATH"
 export GO111MODULE=on
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-alias fzfp="fzf --preview 'head -100 {}'"
+
+export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+export FZF_CTRL_T_OPTS='--preview "bat  --color=always --style=header,grid --line-range :100 {}"'
+
+function checkout () {
+  local result output selected
+
+  result="1"
+  output=$(git status 2>&1 > /dev/null)
+  result=$?
+
+  if [[ $result = "0" ]]; then
+    selected=$(git branch | fzf --reverse --prompt "CHECKOUT" --height 40% --inline-info | tr -d " ")
+    if [[ -n $selected ]]; then
+      git checkout $selected
+    fi
+  else
+    echo $output
+  fi
+
+  zle accept-and-hold
+}
+
+zle -N checkout
+bindkey '^b' checkout
+
+eval "$(starship init zsh)"
+
