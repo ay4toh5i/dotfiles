@@ -5,21 +5,6 @@ repo = 'Shougo/dein.vim'
 repo = 'cespare/vim-toml'
 on_ft = 'toml' 
 
-[[plugins]] # file browse
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-'''
-
-[[plugins]] # require for deoplete
-repo = 'roxma/vim-hug-neovim-rpc'
-
-[[plugins]] # require for deoplete
-repo = 'roxma/nvim-yarp'
-
 [[plugins]] # color scheme
 repo = 'altercation/vim-colors-solarized'
 
@@ -28,41 +13,6 @@ repo = 'cocopon/iceberg.vim'
 
 [[plugins]] # iceberg for lightline
 repo = 'hallzy/lightline-iceberg'
-
-[[plugins]] # Asynchronous Lint Engine
-repo = 'w0rp/ale'
-hook_add = '''
-let g:ale_fixers = {
-\  'ruby': ['rubocup'],
-\}
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '×'
-let g:ale_sign_warning = '⚠︎'
-'''
-
-[[plugins]] # statusline plugin
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-let g:lightline = {
-      \ 'colorscheme': 'iceberg',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LightlineFugitive'
-      \ },
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-      \ }
-function! LightlineFugitive()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ''.branch : ''
-  endif
-  return ''
-endfunction
-'''
 
 [[plugins]] # complete pairs
 repo = 'tpope/vim-surround'
@@ -97,4 +47,157 @@ repo = 'alvan/vim-closetag'
 repo = 'reireias/vim-cheatsheet'
 hook_add = '''
 let g:cheatsheet#cheat_file = "~/cheatsheet.md"
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+let g:lsp_settings_servers_dir = '~/lsp-servers'
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_text_edit_enabled = 1
+
+command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
+
+let g:lsp_highlight_references_enabled = 1
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '⚠︎'}
+let g:lsp_signs_information = {'text': '.'}
+let g:lsp_sings_hint = {'text': '.'}
+'''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = '''
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 1
+let g:asyncomplete_popup_delay = 200
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+[[plugins]] # statusline plugin
+repo = 'itchyny/lightline.vim'
+depends = [ 'lightline-iceberg' ]
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'iceberg',
+      \ 'active': {
+      \   'left':  [ [ 'nerdtree', 'mode', 'paste' ],
+      \              [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'syntastic', 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ],
+      \            ]
+      \ },
+      \   'inactive': {
+      \     'left': [['nerdtree']],
+      \     'right': [[]],
+      \   },
+      \ 'component_function': {
+      \   'nerdtree': 'DescNERDTree',
+      \   'lineinfo': 'LightlineLineinfo',
+      \   'readonly': 'LightlineReadonly',
+      \   'fugitive': 'LightlineFugitive',
+      \   'filename': 'LightlineFilename',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'mode': 'LightlineMode'
+      \ },
+      \ 'component_visible_condition': {
+      \   'lineinfo': '!IsNerdTree',
+      \ },
+      \ 'separator':    { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
+
+  function! DescNERDTree()
+    return IsNerdTree() ? 'NERDTree' : ''
+  endfunction
+
+  function! LightlineLineinfo()
+    return !IsNerdTree() ? line('.') . ':' . col('.') : ''
+  endfunction
+
+  function! IsNerdTree()
+    let fname = expand('%:t')
+    return fname =~ 'NERD_tree_1'
+  endfunction
+
+	function! LightlineModified()
+	  return &ft ==# 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+	endfunction
+
+	function! LightlineReadonly()
+	  return &ft !~? 'help' && &readonly && !IsNerdTree() ? 'RO' : ''
+	endfunction
+
+	function! LightlineFilename()
+	  let fname = expand('%:t')
+	  return fname ==# 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+	        \ fname =~# '^__Tagbar__\|__Gundo\|NERD_tree' ? '' :
+	        \ &ft ==# 'vimfiler' ? vimfiler#get_status_string() :
+	        \ &ft ==# 'unite' ? unite#get_status_string() :
+	        \ &ft ==# 'vimshell' ? vimshell#get_status_string() :
+	        \ (LightlineReadonly() !=# '' ? LightlineReadonly() . ' ' : '') .
+	        \ (fname !=# '' ? fname : '[No Name]') .
+	        \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
+	endfunction
+
+	function! LightlineFugitive()
+	  try
+	    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*FugitiveHead')
+	      let mark = ''  " edit here for cool mark
+	      let branch = FugitiveHead()
+	      return branch !=# '' ? ''.branch : ''
+	    endif
+	  catch
+	  endtry
+	  return ''
+	endfunction
+
+	function! LightlineMode()
+	  let fname = expand('%:t')
+	  return fname =~# '^__Tagbar__' ? 'Tagbar' :
+	        \ fname ==# 'ControlP' ? 'CtrlP' :
+	        \ fname ==# '__Gundo__' ? 'Gundo' :
+	        \ fname ==# '__Gundo_Preview__' ? 'Gundo Preview' :
+	        \ &ft ==# 'unite' ? 'Unite' :
+	        \ &ft ==# 'vimfiler' ? 'VimFiler' :
+	        \ &ft ==# 'vimshell' ? 'VimShell' :
+	        \ winwidth(0) > 60 ? lightline#mode() : ''
+	endfunction
+
+  function! LightlineFileformat()
+	  return winwidth(0) > 70 ? &fileformat : ''
+	endfunction
+
+	function! LightlineFiletype()
+	  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+	endfunction
+
+	function! LightlineFileencoding()
+	  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+	endfunction
 '''
