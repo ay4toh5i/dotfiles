@@ -5,6 +5,9 @@ repo = 'Shougo/dein.vim'
 repo = 'cespare/vim-toml'
 on_ft = 'toml' 
 
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
 [[plugins]] # color scheme
 repo = 'altercation/vim-colors-solarized'
 
@@ -95,6 +98,14 @@ build = './install --all'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+hook_add = '''
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'rg --files --hidden --glob "!.git"'}), <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \           fzf#vim#with_preview(), <bang>0)
+'''
 
 [[plugins]] # statusline plugin
 repo = 'itchyny/lightline.vim'
@@ -204,3 +215,18 @@ let g:lightline = {
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo =  'Lokaltog/vim-easymotion'
+
+[[plugins]]
+repo = 'mattn/vim-goimports'
+hook_add = '''
+let g:goimports = 1
+'''
+
+[[plugins]] # Auto close parentheses
+repo = 'mattn/vim-lexiv'
+
+[[plugins]] # typescript syntax
+repo = 'leafgarland/typescript-vim'

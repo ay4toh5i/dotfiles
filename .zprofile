@@ -5,7 +5,7 @@ compinit
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zhistory
 # メモリに保存される履歴の件数
-export HISTSIZE=1000
+export HISTSIZE=3000
 # 履歴ファイルに保存される履歴の件数
 export SAVEHIST=100000
 # 重複を記録しない
@@ -42,3 +42,5 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 #export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1

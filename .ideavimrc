@@ -74,4 +74,8 @@ imap <C-n> <Down>
 imap <C-b> <Left>
 imap <C-f> <Right>
 
+" set leader
+let mapleader=" "
 
+" enable ideavim easymotion plugin
+set easymotion

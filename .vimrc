@@ -41,6 +41,9 @@ let mapleader = "\<Space>"
 
 " NERDTree setting
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+nnoremap <Leader><C-f> :<C-u>Files<CR>
+nnoremap <Leader><S-f> :<C-u>Rg
+" map <Leader><C-f> <plug>Files<CR>
 
 " setting
 "文字コードをUFT-8に設定
@@ -122,7 +125,8 @@ syntax enable
 
 " color scheme
 " set background=dark "light or dark
-colorscheme iceberg
+" colorscheme iceberg
+colorscheme gruvbox
 
 " map esc
 inoremap <silent> jj <ESC>

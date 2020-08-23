@@ -31,7 +31,7 @@ function checkout () {
   result=$?
 
   if [[ $result = "0" ]]; then
-    selected=$(git branch | fzf --reverse --prompt "CHECKOUT" --height 40% --inline-info | tr -d " ")
+    selected=$(git branch | fzf --reverse --prompt "CHECKOUT " --height 40% --inline-info | tr -d " ")
     if [[ -n $selected ]]; then
       git checkout $selected
     fi
@@ -44,6 +44,14 @@ function checkout () {
 
 zle -N checkout
 bindkey '^b' checkout
+
+function changeDirectory() {
+  cd $(fd -t d --hidden -d 3 | fzf --reverse --height 40% | sed -e 's/^/\.\//')
+  zle accept-line
+}
+
+zle -N changeDirectory
+bindkey '^l' changeDirectory
 
 eval "$(starship init zsh)"
 
