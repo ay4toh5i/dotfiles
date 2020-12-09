@@ -1,0 +1,19 @@
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml' 
+
+[[plugins]]
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+hook_add = '''
+let g:goimports = 1
+'''
+
+[[plugins]] # typescript syntax
+repo = 'leafgarland/typescript-vim'
+on_ft = ['typescript', 'javascript']
+
+[[plugins]]
+repo = 'MaxMEllon/vim-jsx-pretty'
+on_ft = ['typescript', 'javascript']
+

@@ -1,10 +1,6 @@
 [[plungins]] # pgugin manager
 repo = 'Shougo/dein.vim'
               
-[[plugins]] # toml syntax
-repo = 'cespare/vim-toml'
-on_ft = 'toml' 
-
 [[plugins]]
 repo = 'morhetz/gruvbox'
 
@@ -219,14 +215,6 @@ repo = 'tpope/vim-commentary'
 [[plugins]]
 repo =  'Lokaltog/vim-easymotion'
 
-[[plugins]]
-repo = 'mattn/vim-goimports'
-hook_add = '''
-let g:goimports = 1
-'''
-
 [[plugins]] # Auto close parentheses
 repo = 'mattn/vim-lexiv'
 
-[[plugins]] # typescript syntax
-repo = 'leafgarland/typescript-vim'
