@@ -1,0 +1,18 @@
+[user]
+	name = Ayato
+	email = a.b.s2121.ayt@outlook.jp
+[url "github:"]
+    InsteadOf = https://github.com/
+    InsteadOf = git@github.com:
+[color]
+	ui = auto
+[push]
+  default = current
+[core]
+	editor = /usr/local/bin/vim
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[merge]
+	ff = false
+[pull]
+	ff = only
