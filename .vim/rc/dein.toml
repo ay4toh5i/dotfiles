@@ -40,6 +40,9 @@ repo = 'tpope/vim-fugitive'
 
 [[plugins]] # help to tag end
 repo = 'alvan/vim-closetag'
+hook_add = '''
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx"
+'''
 
 [[plugins]] # create my vim cheatsheet
 # :Cheat -> show cheatsheet
