@@ -55,11 +55,16 @@ fi
 
 echo "Deploying dotfiles.."
 
-for file in .??* 
+for path in .??* 
 do
 
-  [[ ${file} == ".git" ]] && continue
-  [[ ${file} == ".gitignore" ]] && continue
-	ln -snfv "${DOT_DIRECTORY}/${file}" "${HOME}/${file}"
+  [[ ${path} == ".git" ]] && continue
+  [[ ${path} == ".gitignore" ]] && continue
+
+  if [ -d ${path} ]; then
+    ln -snfv "${DOT_DIRECTORY}/${path}" "${HOME}/"
+  else
+    ln -snfv "${DOT_DIRECTORY}/${path}" "${HOME}/${path}"
+  fi
 
 done
