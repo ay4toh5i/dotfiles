@@ -1,1 +1,12 @@
-bind status + !git commit --amend
+bind status A !git commit --amend
+bind main <Ctrl-R> !git rebase -i %(commit)
+
+bind generic <Ctrl-F> scroll-page-down
+bind generic <Ctrl-B> scroll-page-up
+bind generic g move-first-line
+bind generic G move-last-line
+bind main    G move-last-line
+
+set line-graphics = utf-8
+set ignore-case = true
+set main-view-commit-title-graph = v1
