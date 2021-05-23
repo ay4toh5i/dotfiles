@@ -11,9 +11,12 @@ let g:goimports = 1
 
 [[plugins]] # typescript syntax
 repo = 'leafgarland/typescript-vim'
-on_ft = ['typescript', 'javascript']
+on_ft = ['typescript', 'typescriptreact', 'javascript']
 
 [[plugins]]
 repo = 'MaxMEllon/vim-jsx-pretty'
-on_ft = ['typescript', 'javascript']
+on_ft = ['typescript', 'typescriptreact', 'javascript']
 
+[[plugins]]
+repo = 'styled-components/vim-styled-components'
+on_ft = ['typescriptreact', 'javascriptreact']
