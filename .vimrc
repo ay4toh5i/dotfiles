@@ -43,7 +43,7 @@ let mapleader = "\<Space>"
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 nnoremap <Leader><C-f> :<C-u>Files<CR>
 nnoremap <Leader><S-f> :<C-u>Rg 
-noremap <S-F6> :LspRename
+noremap <S-F6> :LspRename<CR>
 noremap <Leader><C-h> :LspHover<CR>
 " map <Leader><C-f> <plug>Files<CR>
 
