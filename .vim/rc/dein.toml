@@ -228,3 +228,8 @@ repo =  'Lokaltog/vim-easymotion'
 [[plugins]] # Auto close parentheses
 repo = 'mattn/vim-lexiv'
 
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+if = "has('nvim')"
+merged = 0
+on_lua = 'nvim-treesitter'
