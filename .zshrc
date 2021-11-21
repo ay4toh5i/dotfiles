@@ -53,5 +53,14 @@ function changeDirectory() {
 zle -N changeDirectory
 bindkey '^l' changeDirectory
 
+function cd2GitRepository() {
+  cd $(ghq list --full-path | fzf --reverse)
+  zle accept-line
+}
+
+zle -N cd2GitRepository
+bindkey '^g' cd2GitRepository
+
 eval "$(starship init zsh)"
 
+source /home/ayato/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
