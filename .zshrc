@@ -6,18 +6,6 @@
 alias ls='ls -FG'
 alias ll='ls -ahlFG'
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# goenv
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
-export GO111MODULE=on
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
@@ -60,6 +48,8 @@ function cd2GitRepository() {
 
 zle -N cd2GitRepository
 bindkey '^g' cd2GitRepository
+
+export GO111MODULE=on
 
 eval "$(starship init zsh)"
 

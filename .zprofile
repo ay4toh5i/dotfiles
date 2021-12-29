@@ -37,10 +37,7 @@ bindkey "^S" history-incremental-search-forward
 setopt interactivecomments
 
 # 環境変数
-export PHTH="/usr/local/Cellar/mysql/8.0.15/lib:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
-#export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+export GOPATH=$HOME/.go
+export PATH="$PATH:$GOPATH/bin"
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
