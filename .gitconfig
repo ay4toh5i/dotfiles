@@ -10,7 +10,7 @@
 [push]
   default = current
 [core]
-	editor = /usr/local/bin/vim
+	editor = /usr/bin/vim
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 [merge]
