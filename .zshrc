@@ -50,3 +50,7 @@ export GO111MODULE=on
 eval "$(starship init zsh)"
 
 source /home/ayato/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# pgp
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
