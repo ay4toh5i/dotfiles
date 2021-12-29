@@ -1,4 +1,3 @@
-# zsh最強の2行
 autoload -U compinit
 compinit
 
