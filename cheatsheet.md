@@ -57,6 +57,9 @@ hello world -> "hello world"
   肯定後読み：\@<=
   否定後読み：\@<!
 
+- json整形
+:%!jq
+
 - チートシートを表示する
 :Cheatsheet
 
