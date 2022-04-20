@@ -3,7 +3,7 @@
 set -u
 
 DOT_DIRECTORY="${HOME}/dotfiles"
-GITHUB_URL="https://github.com/HighGreat/dotfiles"
+GITHUB_URL="https://github.com/ay4toh5i/dotfiles"
 
 # is_exists returns true if ececutable $1 exists in $PATH
 is_exists() {
