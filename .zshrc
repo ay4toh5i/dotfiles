@@ -46,7 +46,6 @@ function cd2GitRepository() {
 zle -N cd2GitRepository
 bindkey '^g' cd2GitRepository
 
-export GO111MODULE=on
 
 eval "$(starship init zsh)"
 

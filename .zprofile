@@ -34,9 +34,3 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 # コマンドラインでのコメントを有効
 setopt interactivecomments
-
-# 環境変数
-export GOPATH=$HOME/.go
-export PATH="$PATH:$GOPATH/bin"
-export DOCKER_BUILDKIT=1
-export COMPOSE_DOCKER_CLI_BUILD=1
