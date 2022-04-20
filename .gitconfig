@@ -3,12 +3,12 @@
 	email = ay4toh5i@gmail.com
 	signingkey = DC10D164A4E1B2BE2A7C4678F5556C0DC37D0FCD
 [url "github:"]
-    InsteadOf = https://github.com/
-    InsteadOf = git@github.com:
+	InsteadOf = https://github.com/
+	InsteadOf = git@github.com:
 [color]
 	ui = auto
 [push]
-  default = current
+	default = current
 [core]
 	editor = /usr/bin/vim
 	excludesfile = ~/.gitignore_global
