@@ -57,16 +57,12 @@ fi
 
 echo "Deploying dotfiles.."
 
-for path in .??* 
-do
+while read -r path; do
+  basedir=$(dirname ${path})
 
-  [[ ${path} == ".git" ]] && continue
-  [[ ${path} == ".gitignore" ]] && continue
-
-  if [ -d ${path} ]; then
-    ln -snfv "${DOT_DIRECTORY}/${path}" "${HOME}"
-  else
-    ln -snfv "${DOT_DIRECTORY}/${path}" "${HOME}/${path}"
+  if [ $basedir != "." ] && [ ! -d "${HOME}/${basedir#\./}" ]; then
+    mkdir -p "${HOME}/${basedir#\./}"
   fi
 
-done
+  ln -snfv "${DOT_DIRECTORY}/${path#\./}" "${HOME}/${path#\./}"
+done < <(find . -type f -not -path '*/\.git/*' -not -name '\.gitignore' -not -name 'README.md')
