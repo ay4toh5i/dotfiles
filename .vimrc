@@ -126,9 +126,8 @@ filetype plugin indent on
 syntax enable
 
 " color scheme
-" set background=dark "light or dark
-" colorscheme iceberg
-colorscheme gruvbox
+set background=dark
+colorscheme iceberg
 
 " map esc
 inoremap <silent> jj <ESC>
