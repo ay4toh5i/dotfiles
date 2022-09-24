@@ -26,26 +26,28 @@ die() {
   exit "{$2:-1}"
 }
 
-echo "Installing..."
+if [ ! -d ${DOT_DIRECTORY} ]; then
+  echo "Installing..."
 
-if has "git"; then
-  git clone --recursive ${GITHUB_URL} ${DOT_DIRECTORY}
+  if has "git"; then
+    git clone --recursive ${GITHUB_URL} ${DOT_DIRECTORY}
 
-elif has "curl" || has "wget"; then
-  tarball="https://github.com/HighGreat/dotfiles/archive/master.tar.gz"
+  elif has "curl" || has "wget"; then
+    tarball="https://github.com/HighGreat/dotfiles/archive/master.tar.gz"
 
-  if has "curl"; then
-    curl -L ${tarball}
+    if has "curl"; then
+      curl -L ${tarball}
 
-  elif has "wget"; then
-    wget -O - ${tarball}
+    elif has "wget"; then
+      wget -O - ${tarball}
 
-  fi | tar xvz 
+    fi | tar xvz 
 
-  mv -f dotfiles-master ${DOT_DIRECTORY}
+    mv -f dotfiles-master ${DOT_DIRECTORY}
 
-else
-  die "curl or wget required"
+  else
+    die "curl or wget required"
+  fi
 fi
 
 cd ${DOT_DIRECTORY}
@@ -62,7 +64,7 @@ do
   [[ ${path} == ".gitignore" ]] && continue
 
   if [ -d ${path} ]; then
-    ln -snfv "${DOT_DIRECTORY}/${path}" "${HOME}/"
+    ln -snfv "${DOT_DIRECTORY}/${path}" "${HOME}"
   else
     ln -snfv "${DOT_DIRECTORY}/${path}" "${HOME}/${path}"
   fi
