@@ -66,7 +66,10 @@ set laststatus=2
 set clipboard+=unnamed
 " マウスを使えるようにする
 set mouse=a
-set ttymouse=xterm2
+
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 " バックスペースの動作設定
 set backspace=indent,eol,start
 
