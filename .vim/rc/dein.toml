@@ -233,3 +233,13 @@ repo = 'nvim-treesitter/nvim-treesitter'
 if = "has('nvim')"
 merged = 0
 on_lua = 'nvim-treesitter'
+hook_post_source = '''
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {}
+  }
+}
+EOF
+'''
