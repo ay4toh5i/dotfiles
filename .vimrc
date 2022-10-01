@@ -142,9 +142,3 @@ colorscheme iceberg
 
 " map esc
 inoremap <silent> jj <ESC>
-
-" insert mode でemacsのキーバインドで移動
-imap <C-p> <Up>
-imap <C-n> <Down>
-imap <C-b> <Left>
-imap <C-f> <Right>
