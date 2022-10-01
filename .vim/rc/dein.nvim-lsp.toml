@@ -1,0 +1,52 @@
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+depends = [ 'mason.nvim' ]
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+depends = [ 'mason.nvim', 'mason-lspconfig.nvim' ]
+hook_post_source = '''
+lua <<EOF
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+  function (server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup {}
+  end,
+}
+EOF
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+depends = ['denops.vim']
+hook_add = '''
+  call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
+  call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {
+        \   'matchers': ['matcher_head'],
+        \   'sorters': ['sorter_rank']},
+        \   'around': {
+        \     'mark': 'around' 
+        \   },
+        \ })
+  call ddc#enable()
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+depends = ['ddc.vim']

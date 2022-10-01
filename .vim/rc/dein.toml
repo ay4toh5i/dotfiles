@@ -213,3 +213,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 '''
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
