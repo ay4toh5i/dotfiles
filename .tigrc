@@ -1,5 +1,6 @@
 bind status A !git commit --amend
-bind main <Ctrl-R> !git rebase -i %(commit)
+bind main <Ctrl-R> !git rebase -i --autosquash --autostash %(commit)
+bind main <Ctrl-F> !git commit --fixup %(commit)
 
 bind generic <Ctrl-F> scroll-page-down
 bind generic <Ctrl-B> scroll-page-up
