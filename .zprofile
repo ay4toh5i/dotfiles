@@ -34,3 +34,8 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 # コマンドラインでのコメントを有効
 setopt interactivecomments
+
+# pgp
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
