@@ -75,13 +75,14 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 [[plugins]] # statusline plugin
 repo = 'itchyny/lightline.vim'
-depends = [ 'lightline-iceberg' ]
+depends = ['lightline-iceberg', 'denops-skkeleton.vim']
 hook_add = '''
 set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'iceberg',
       \ 'active': {
       \   'left':  [ [ 'nerdtree', 'mode', 'paste' ],
+      \              [ 'skk', 'skkMode' ],
       \              [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
       \   'right': [ [ 'syntastic', 'lineinfo' ],
       \              [ 'percent' ],
@@ -101,7 +102,9 @@ let g:lightline = {
       \   'fileformat': 'LightlineFileformat',
       \   'filetype': 'LightlineFiletype',
       \   'fileencoding': 'LightlineFileencoding',
-      \   'mode': 'LightlineMode'
+      \   'mode': 'LightlineMode',
+      \   'skk': 'SkkEnabled',
+      \   'skkMode': 'SkkMode',
       \ },
       \ 'component_visible_condition': {
       \   'lineinfo': '!IsNerdTree',
@@ -109,6 +112,14 @@ let g:lightline = {
       \ 'separator':    { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
+
+  function! SkkEnabled()
+    return exists("g:loaded_skkeleton") && skkeleton#is_enabled() ? 'skk' : ''
+  endfunction
+
+  function! SkkMode()
+    return exists("g:loaded_skkeleton") && skkeleton#is_enabled() ? skkeleton#mode() : ''
+  endfunction
 
   function! DescNERDTree()
     return IsNerdTree() ? 'NERDTree' : ''
