@@ -8,7 +8,6 @@
 	default = current
 [core]
 	editor = /usr/bin/vim
-	excludesfile = ~/.gitignore_global
 	autocrlf = input
 [merge]
 	ff = false
