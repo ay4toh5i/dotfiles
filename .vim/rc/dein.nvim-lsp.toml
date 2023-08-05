@@ -63,10 +63,14 @@ EOF
 '''
 
 [[plugins]]
+repo = 'Shougo/ddc-ui-native'
+
+[[plugins]]
 repo = 'Shougo/ddc.vim'
 depends = ['denops.vim']
 hook_add = '''
   call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
+  call ddc#custom#patch_global('ui', 'native')
   call ddc#custom#patch_global('sourceOptions', {
         \ '_': {
         \   'matchers': ['matcher_head'],
@@ -79,7 +83,25 @@ hook_add = '''
         \     'forceCompletionPattern': '\.\w*|:\w*|->\w*',
         \   }
         \ })
+
+  call ddc#custom#patch_global('sourceParams', #{
+      \   nvim-lsp: #{
+      \     snippetEngine: denops#callback#register({
+      \           body -> vsnip#anonymous(body)
+      \     }),
+      \     enableResolveItem: v:true,
+      \     enableAdditionalTextEdit: v:true,
+      \   }
+      \ })
   call ddc#enable()
+'''
+hook_post_source = '''
+lua <<EOF
+  local capabilities = require("ddc_nvim_lsp").make_client_capabilities()
+  require("lspconfig").denols.setup({
+    capabilities = capabilities,
+  })
+EOF
 '''
 
 [[plugins]]
@@ -114,7 +136,3 @@ call popup_preview#enable()
 
 [[plugins]] # lsp textEdit integration
 repo = 'hrsh7th/vim-vsnip'
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
-depends = ['vim-vsnip']
