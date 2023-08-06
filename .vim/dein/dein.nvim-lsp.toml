@@ -71,6 +71,19 @@ cmap <C-j> <Plug>(skkeleton-toggle)
 call skkeleton#config({
 \   'globalJisyo': '~/.config/skk/SKK-JISYO.L',
 \ })
+
+autocmd User skkeleton-enable-pre call s:skkeleton_pre()
+function! s:skkeleton_pre() abort
+    " Overwrite sources
+    let s:prev_buffer_config = ddc#custom#get_buffer()
+    call ddc#custom#patch_buffer('sources', ['skkeleton'])
+endfunction
+
+autocmd User skkeleton-disable-pre call s:skkeleton_post()
+function! s:skkeleton_post() abort
+    " Restore sources
+    call ddc#custom#set_buffer(s:prev_buffer_config)
+endfunction
 '''
 
 [[plugins]]
@@ -95,25 +108,25 @@ repo = 'Shougo/ddc.vim'
 depends = ['denops.vim']
 hook_add = '''
   call ddc#custom#patch_global('ui', 'pum')
-  call ddc#custom#patch_global('sources', ['skkeleton', 'nvim-lsp', 'around'])
-  call ddc#custom#patch_global('sourceOptions', {
-        \ '_': {
-        \   'matchers': ['matcher_head'],
-        \   'sorters': ['sorter_rank']},
-        \   'around': {
-        \     'mark': 'around' 
+  call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
+  call ddc#custom#patch_global('sourceOptions', #{
+        \   _: #{
+        \     matchers: ['matcher_head'],
+        \     sorters: ['sorter_rank']
         \   },
-        \   'nvim-lsp': {
-        \     'mark': 'lsp',
-        \     'dup': 'keep',
-        \     'keywordPattern': '\k+',
+        \   around: #{
+        \     mark: '[around]' 
         \   },
-        \   'skkeleton': {
-        \     'mark': 'skk',
-        \     'matchers': ['skkeleton'],
-        \     'sorters': [],
-        \     'minAutoCompleteLength': 2,
-        \     'isVolatile': v:true,
+        \   nvim-lsp: #{
+        \     mark: '[lsp]',
+        \     dup: 'keep',
+        \     keywordPattern: '\k+',
+        \   },
+        \   skkeleton: #{
+        \     mark: '[skk]',
+        \     matchers: ['skkeleton'],
+        \     minAutoCompleteLength: 2,
+        \     isVolatile: v:true,
         \   },
         \ })
 
