@@ -10,6 +10,9 @@ repo = 'altercation/vim-colors-solarized'
 [[plugins]] # color scheme
 repo = 'cocopon/iceberg.vim'
 
+[[plugins]] # color scheme
+repo = 'AlexvZyl/nordic.nvim'
+
 [[plugins]] # complete pairs
 repo = 'tpope/vim-surround'
 

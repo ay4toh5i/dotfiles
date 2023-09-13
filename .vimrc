@@ -94,7 +94,8 @@ syntax enable
 
 " color scheme
 set background=dark
-colorscheme iceberg
+" colorscheme iceberg
+colorscheme nordic
 
 " map esc
 inoremap <silent> jj <ESC>
