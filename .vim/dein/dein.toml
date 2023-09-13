@@ -29,6 +29,14 @@ repo = 'jistr/vim-nerdtree-tabs'
 [[plugins]] # nerdtree plugin
 repo = 'Xuyuanp/nerdtree-git-plugin'
 
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+hook_add = '''
+let g:webdevicons_enable_nerdtree = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+let g:WebDevIconsNerdTreeGitPluginForceVAligna = 1
+'''
+
 [[plugins]] # git plugin
 repo = "airblade/vim-gitgutter"
 
