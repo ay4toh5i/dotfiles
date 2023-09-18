@@ -20,6 +20,16 @@ return {
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = false },  
+      matchup = {
+        enable = true,
+      },
+      endwise = {
+        enable = true,
+      },
     })
   end,
+  dependencies = {
+    { 'andymass/vim-matchup' },
+    { 'RRethy/nvim-treesitter-endwise' },
+  }
 }

@@ -4,9 +4,15 @@ return {
   config = function()
     vim.fn['ddc#custom#patch_global']({
       ['ui'] = 'pum',
+      ['autoCompleteEvents'] = { 'InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged' },
+      ['backspaceCompletion'] = true,
+      ['cmdlineSources'] = {
+        [':'] = { 'cmdline', 'cmdline-history', 'arround' },
+      },
       ['sources'] = { 'nvim-lsp', 'around', 'buffer' },
       ['sourceOptions'] = {
         ['_'] = {
+          ignoreCase = true,
           matchers = {'matcher_fuzzy'},
           sorters = {'sorter_fuzzy'},
           converters = {'converter_fuzzy'},
@@ -16,10 +22,10 @@ return {
         ['nvim-lsp'] = {
           mark =  '[lsp]',
           dup = 'keep',
-          keywordPattern = '\\k+',
+          converters = { 'converter_kind_labels' },
+          keywordPattern = '[:keyword:]+',
           isVolatile = true,
         },
-        endfunction
       },
       ['sourceParams'] = {
         ['nvim-lsp'] = {
@@ -29,10 +35,80 @@ return {
           confirmBehavior = 'replace',
         },
       },
-      ['autoCompleteEvents'] = {'InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged'},
-      ['cmdlineSources'] = {
-        [':'] = { 'cmdline', 'cmdline-history', 'arround' },
+      ['filterParams'] = {
+        ['converter_kind_labels'] = {
+          kindLabels = {
+            Text = ' ',
+            Method = '',
+            Function = '',
+            Constructor = '',
+            Field = '',
+            Variable = '',
+            Class = '',
+            Interface = '',
+            Module = '',
+            Property = '',
+            Unit = '',
+            Value = '',
+            Enum = '',
+            Keyword = '',
+            Snippet = '',
+            Color = '',
+            File = '',
+            Reference = '',
+            Folder = '',
+            EnumMember = '',
+            Constant = '',
+            Struct = '',
+            Event = '',
+            Operator = '',
+            TypeParameter = ''
+          },
+          -- kindLabels = {
+          --   Class = '󰠱 Cass',
+          --   Color = '󱥚 Color',
+          --   Constant = '󰏿 Const',
+          --   Constructor = ' New',
+          --   Enum = ' Enum',
+          --   EnumMember = ' Enum',
+          --   Event = ' Event',
+          --   Field = '󰜢 Field',
+          --   File = '󰈙 File',
+          --   Folder = '󰉋 Dir',
+          --   Function = '󰊕 Func',
+          --   Interface = ' Interface',
+          --   Keyword = '󰌆 Key',
+          --   Method = '  Method',
+          --   Module = ' Mod',
+          --   Operator = '󰆕 Op',
+          --   Property = '󰜢 Prop',
+          --   Reference = '󰈇 Ref',
+          --   Snippet = ' Snip',
+          --   Struct = '󰙅 Struct',
+          --   Text = '󰉿 Text',
+          --   TypeParameter = '',
+          --   Unit = ' Unit',
+          --   Value = '󰎠 Value',
+          --   Variable = '󰫧 Var',
+          -- },
+          kindHlGroups = {
+            Method = 'Function',
+            Function = 'Function',
+            Constructor = 'Function',
+            Field = 'Identifier',
+            Variable = 'Identifier',
+            Class = 'Structure',
+            Interface = 'Structure'
+          },
+        }
       }
+    })
+
+    vim.fn["pum#set_option"]({
+      border = 'rounded',
+      padding = true,
+      scrollbar_char = "┃",
+      item_orders = { "kind", "space", "abbr", "space", "menu" },
     })
 
     vim.cmd[[
@@ -45,8 +121,6 @@ return {
         cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
         cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
         cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-
-        autocmd User DDCCmdlineLeave ++once call CommandlinePost()
 
         " Enable command line completion for the buffer
         call ddc#enable_cmdline_completion()
@@ -62,6 +136,7 @@ return {
       endfunction
     ]]
 
+    require('ddc_nvim_lsp_setup').setup()
     vim.fn["popup_preview#enable"]()
     vim.fn["signature_help#enable"]()
     vim.fn["ddc#enable"]()
@@ -81,7 +156,7 @@ return {
 
       end
     },
-    { 'uga-rosa/ddc-nvim-lsp-setup', config = function() require('ddc_nvim_lsp_setup').setup() end },
+    { 'uga-rosa/ddc-nvim-lsp-setup' },
     { 'Shougo/ddc-nvim-lsp' },
     { 'tani/ddc-fuzzy' },
     { 'matsui54/denops-signature_help' },

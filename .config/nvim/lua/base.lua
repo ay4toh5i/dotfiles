@@ -28,3 +28,4 @@ vim.opt.swapfile = false
 vim.opt.syntax = 'ON'
 vim.opt.modifiable = true
 -- filetype plugin indent true
+vim.opt.pumblend = 15
