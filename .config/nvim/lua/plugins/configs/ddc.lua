@@ -29,7 +29,7 @@ return {
       },
       ['sourceParams'] = {
         ['nvim-lsp'] = {
-          snippetEngine = vim.fn["denops#callback#register"](function(body) vim.fn["vsnip#anonymous"](body) end),
+          snippetEngine = vim.fn['denops#callback#register'](function(body) vim.fn['vsnip#anonymous'](body) end),
           enableResolveItem = true,
           enableAdditionalTextEdit = true,
           confirmBehavior = 'replace',
@@ -104,11 +104,18 @@ return {
       }
     })
 
-    vim.fn["pum#set_option"]({
+    vim.api.nvim_create_autocmd('ColorScheme', {
+      pattern = '*',
+      callback = function()
+        vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'None', fg = 'None' })   
+      end,
+    })
+
+    vim.fn['pum#set_option']({
       border = 'rounded',
-      padding = true,
-      scrollbar_char = "┃",
-      item_orders = { "kind", "space", "abbr", "space", "menu" },
+      padding = false,
+      scrollbar_char = '┃',
+      item_orders = { 'kind', 'space', 'abbr', 'space', 'menu' },
     })
 
     vim.cmd[[
@@ -137,9 +144,9 @@ return {
     ]]
 
     require('ddc_nvim_lsp_setup').setup()
-    vim.fn["popup_preview#enable"]()
-    vim.fn["signature_help#enable"]()
-    vim.fn["ddc#enable"]()
+    vim.fn['popup_preview#enable']()
+    vim.fn['signature_help#enable']()
+    vim.fn['ddc#enable']()
   end,
   dependencies = {
     { 'vim-denops/denops.vim' },
@@ -160,7 +167,15 @@ return {
     { 'Shougo/ddc-nvim-lsp' },
     { 'tani/ddc-fuzzy' },
     { 'matsui54/denops-signature_help' },
-    { 'matsui54/denops-popup-preview.vim' },
+    {
+      'matsui54/denops-popup-preview.vim',
+      setup = function() 
+        vim.g.popup_preview_config = {
+          border = 'rounded',
+          winblend = 30,
+        }
+      end,
+    },
     { 'matsui54/ddc-buffer' },
     { 'Shougo/ddc-around' },
     { 'Shougo/ddc-source-cmdline' },
