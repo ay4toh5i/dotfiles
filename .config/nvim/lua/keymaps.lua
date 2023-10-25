@@ -6,3 +6,6 @@ keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
 keymap('n', 'j', 'gj', { noremap = true })
 keymap('n', 'k', 'gk', { noremap = true })
 keymap('n', '<Esc><Esc>', ':nohlsearch<CR><Esc>', {})
+
+keymap('n', '<C-j>', ':bprev<CR>', {})
+keymap('n', '<C-k>', ':bnext<CR>', {})
