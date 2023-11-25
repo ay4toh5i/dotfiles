@@ -5,11 +5,13 @@ return {
     { '<leader>n', '<cmd>Neotree toggle<cr>' },
   },
   config = function ()
-    filesystem = {
-      filtered_items = {
-        visible = true,
-      },
-    }
+    require('neo-tree').setup({
+      filesystem = {
+        filtered_items = {
+          visible = true,
+        },
+      }
+    })
   end,
   dependencies = {
     'nvim-lua/plenary.nvim',
