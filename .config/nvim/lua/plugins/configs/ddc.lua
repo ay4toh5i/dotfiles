@@ -9,7 +9,7 @@ return {
       ['cmdlineSources'] = {
         [':'] = { 'cmdline', 'cmdline-history', 'arround' },
       },
-      ['sources'] = { 'nvim-lsp', 'around', 'buffer' },
+      ['sources'] = { 'lsp', 'around', 'buffer' },
       ['sourceOptions'] = {
         ['_'] = {
           ignoreCase = true,
@@ -19,16 +19,19 @@ return {
         },
         ['around'] = { mark = '[around]' },
         ['buffer'] = { mark = '[buffer]' },
-        ['nvim-lsp'] = {
+        ['lsp'] = {
           mark =  '[lsp]',
           dup = 'keep',
-          converters = { 'converter_kind_labels' },
-          keywordPattern = '[:keyword:]+',
+          sorters = { 'sorter_fuzzy', 'sorter_lsp-kind' },
+          converters = { 'converter_fuzzy', 'converter_kind_labels' },
+          forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
+          minAutoCompleteLength = 1,
           isVolatile = true,
         },
       },
       ['sourceParams'] = {
-        ['nvim-lsp'] = {
+        ['lsp'] = {
+          lspEngine = 'nvim-lsp',
           snippetEngine = vim.fn['denops#callback#register'](function(body) vim.fn['vsnip#anonymous'](body) end),
           enableResolveItem = true,
           enableAdditionalTextEdit = true,
