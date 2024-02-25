@@ -1,4 +1,4 @@
-vim.o.laststatus = 2 -- default
+vim.o.laststatus = 3 -- Global Status Line
 vim.o.showcmd = true -- default
 vim.o.showmode = false
 vim.o.autoread = true -- default
