@@ -16,6 +16,7 @@ return {
         'tsx',
         'html',
         'css',
+        'markdown',
       },
       sync_install = false,
       highlight = { enable = true },
