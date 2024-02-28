@@ -1,7 +1,9 @@
 return {
   'neovim/nvim-lspconfig',
-  event = { "InsertEnter" },
+  event = "VeryLazy",
   config = function ()
+    require('ddc_source_lsp_setup').setup()
+
     -- Mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     local opts = { noremap=true, silent=true }
@@ -93,6 +95,7 @@ return {
     }
   end,
   dependencies = {
+    { 'ddc-source-lsp' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'folke/trouble.nvim' },
