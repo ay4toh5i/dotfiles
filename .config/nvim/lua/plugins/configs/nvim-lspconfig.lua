@@ -33,7 +33,7 @@ return {
       vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
       vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
       vim.keymap.set('n', 'gr', function() trouble.toggle('lsp_references') end, bufopts)
-      vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
+      vim.keymap.set('n', '<space>fm', vim.lsp.buf.format, bufopts)
     end
 
     local lsp_flags = {
