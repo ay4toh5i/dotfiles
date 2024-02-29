@@ -146,7 +146,7 @@ return {
       endfunction
     ]]
 
-    require('ddc_nvim_lsp_setup').setup()
+    require('ddc_source_lsp_setup').setup()
     vim.fn['popup_preview#enable']()
     vim.fn['signature_help#enable']()
     vim.fn['ddc#enable']()
@@ -166,7 +166,7 @@ return {
 
       end
     },
-    { 'uga-rosa/ddc-nvim-lsp-setup' },
+    { 'uga-rosa/ddc-source-lsp-setup' },
     { 'Shougo/ddc-nvim-lsp' },
     { 'tani/ddc-fuzzy' },
     { 'matsui54/denops-signature_help' },

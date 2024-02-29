@@ -95,7 +95,7 @@ return {
     }
   end,
   dependencies = {
-    { 'ddc-source-lsp' },
+    { 'Shougo/ddc-source-lsp' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'folke/trouble.nvim' },
