@@ -7,8 +7,9 @@ return {
     require('nordic').setup(
       {
         override = {
-          Visual = { bg = palette.gray2 }
-        }
+          Visual = { bg = palette.gray2 },
+          PmenuSel = { bg = palette.gray2 },
+        },
       }
     )
   end
