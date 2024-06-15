@@ -14,7 +14,7 @@ vim.o.listchars = 'tab:▸-'
 vim.o.ignorecase = true 
 vim.o.smartcase = true
 
-vim.wo.number = true
+vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.cursorlineopt = 'both'
 vim.wo.cursorcolumn = true
@@ -28,4 +28,5 @@ vim.opt.swapfile = false
 vim.opt.syntax = 'ON'
 vim.opt.modifiable = true
 -- filetype plugin indent true
-vim.opt.pumblend = 15
+-- See https://qiita.com/delphinus/items/a202d0724a388f6cdbc3
+vim.opt.pumblend = 5

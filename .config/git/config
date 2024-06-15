@@ -19,3 +19,5 @@
 	gpgsign = true
 [gpg]
 	program = gpg
+[ghq]
+  user = ay4toh5i
