@@ -49,14 +49,7 @@ return {
       function (server_name) -- default handler (optional)
         local lspconfig = require('lspconfig')
 
-        local node_root_dir = lspconfig.util.root_pattern("package.json")
-        local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
-
         if server_name == 'denolsp' then
-          if is_node_repo then
-            return
-          end
-
           lspconfig[server_name].setup {
             root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json"),
             on_attach = on_attach,
@@ -76,12 +69,10 @@ return {
             },
           }
         elseif server_name == 'tsserver' then
-          if not is_node_repo then
-            return
-          end
-
           lspconfig[server_name].setup {
             on_attach = on_attach,
+            root_dir = lspconfig.util.root_pattern("package.json"),
+            single_file_support = false,
             flags = lsp_flags,
           }
 
