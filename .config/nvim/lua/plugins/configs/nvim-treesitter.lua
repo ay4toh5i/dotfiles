@@ -17,6 +17,7 @@ return {
         'html',
         'css',
         'markdown',
+        'yaml',
       },
       sync_install = false,
       highlight = { enable = true },
