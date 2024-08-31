@@ -47,7 +47,7 @@ local keys = {
 }
 
 return {
-  color_scheme = 'iceberg-dark',
+  color_scheme = 'Catppuccin Mocha',
   window_background_opacity = 0.95,
   text_background_opacity = 0.95,
   font_size = 16.0,
