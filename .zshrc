@@ -5,6 +5,8 @@ alias tree='tree -L 2 -C'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS='--preview "bat  --color=always --style=header,grid --line-range :100 {}"'
 
@@ -46,9 +48,7 @@ function cd2GitRepository() {
 zle -N cd2GitRepository
 bindkey '^g' cd2GitRepository
 
-
 eval "$(starship init zsh)"
 
-source /home/ayato/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # pgp
 gpg-connect-agent /bye

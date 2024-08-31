@@ -1,3 +1,7 @@
 # ignore
 test.sh
 .DS_Store
+
+.zshrc.local
+
+!/**/.gitkeep
