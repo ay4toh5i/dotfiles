@@ -53,4 +53,9 @@ return {
   font_size = 16.0,
   font = wezterm.font 'Ricty for Powerline',
   keys = keys,
+  hide_tab_bar_if_only_one_tab = true,
+  window_decorations = 'INTEGRATED_BUTTONS | RESIZE',
+  window_padding = {
+    top = '1.5cell',
+  },
 }
