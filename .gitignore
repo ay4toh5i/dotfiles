@@ -5,3 +5,5 @@ test.sh
 .zshrc.local
 
 !/**/.gitkeep
+
+antigen.zsh

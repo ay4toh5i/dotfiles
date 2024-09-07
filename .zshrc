@@ -48,6 +48,12 @@ function cd2GitRepository() {
 zle -N cd2GitRepository
 bindkey '^g' cd2GitRepository
 
+source ./antigen.zsh
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen apply
+
 eval "$(starship init zsh)"
 
 # pgp

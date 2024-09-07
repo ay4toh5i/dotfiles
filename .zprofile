@@ -1,6 +1,3 @@
-autoload -U compinit
-compinit
-
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zhistory
 # メモリに保存される履歴の件数
