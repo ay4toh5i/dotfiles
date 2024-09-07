@@ -14,6 +14,7 @@ vim.o.listchars = 'tab:▸-'
 vim.o.ignorecase = true 
 vim.o.smartcase = true
 
+vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.cursorlineopt = 'both'
