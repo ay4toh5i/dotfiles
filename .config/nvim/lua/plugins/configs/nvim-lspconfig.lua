@@ -1,12 +1,12 @@
 return {
   'neovim/nvim-lspconfig',
   event = "VeryLazy",
-  config = function ()
+  config = function()
     require('ddc_source_lsp_setup').setup()
 
     -- Mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    local opts = { noremap=true, silent=true }
+    local opts = { noremap = true, silent = true }
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -22,7 +22,7 @@ return {
 
       -- Mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      local bufopts = { noremap=true, silent=true, buffer=bufnr }
+      local bufopts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
       vim.keymap.set('n', 'gd', function() trouble.toggle('lsp_definitions') end, bufopts)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -36,6 +36,13 @@ return {
       vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
       vim.keymap.set('n', 'gr', function() trouble.toggle('lsp_references') end, bufopts)
       vim.keymap.set('n', '<space>fm', vim.lsp.buf.format, bufopts)
+
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover,
+        {
+          border = "rounded", -- "shadow" , "none", "rounded"
+        }
+      )
     end
 
     local lsp_flags = {
@@ -46,7 +53,7 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup()
     require("mason-lspconfig").setup_handlers {
-      function (server_name) -- default handler (optional)
+      function(server_name)  -- default handler (optional)
         local lspconfig = require('lspconfig')
 
         if server_name == 'denolsp' then
@@ -75,7 +82,6 @@ return {
             single_file_support = false,
             flags = lsp_flags,
           }
-
         else
           lspconfig[server_name].setup {
             on_attach = on_attach,
@@ -90,7 +96,7 @@ return {
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'folke/trouble.nvim' },
-    { 
+    {
       'onsails/lspkind.nvim',
       config = function()
         require('lspkind').init({
