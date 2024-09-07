@@ -103,6 +103,7 @@ return {
           padding = false,
           scrollbar_char = '┃',
           item_orders = { 'kind', 'space', 'abbr', 'space', 'menu' },
+          offset_cmdrow = 2,
         })
 
         vim.cmd [[
