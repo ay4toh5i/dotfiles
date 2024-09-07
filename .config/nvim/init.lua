@@ -2,4 +2,4 @@ require('base')
 require('keymaps')
 require('plugins')
 
-vim.cmd.colorscheme('catppuccin')
+vim.cmd.colorscheme('nordic')

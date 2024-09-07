@@ -10,4 +10,5 @@ return {
     })
   end,
   priority = 1000,
+  enabled = false,
 }
