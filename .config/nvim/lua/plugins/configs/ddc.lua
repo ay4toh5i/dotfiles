@@ -13,14 +13,14 @@ return {
       ['sourceOptions'] = {
         ['_'] = {
           ignoreCase = true,
-          matchers = {'matcher_fuzzy'},
-          sorters = {'sorter_fuzzy'},
-          converters = {'converter_fuzzy'},
+          matchers = { 'matcher_fuzzy' },
+          sorters = { 'sorter_fuzzy' },
+          converters = { 'converter_fuzzy' },
         },
         ['around'] = { mark = '[around]' },
         ['buffer'] = { mark = '[buffer]' },
         ['lsp'] = {
-          mark =  '[lsp]',
+          mark = '[lsp]',
           dup = 'keep',
           sorters = { 'sorter_fuzzy', 'sorter_lsp-kind' },
           converters = { 'converter_fuzzy', 'converter_kind_labels' },
@@ -67,33 +67,6 @@ return {
             Operator = '',
             TypeParameter = ''
           },
-          -- kindLabels = {
-          --   Class = '󰠱 Cass',
-          --   Color = '󱥚 Color',
-          --   Constant = '󰏿 Const',
-          --   Constructor = ' New',
-          --   Enum = ' Enum',
-          --   EnumMember = ' Enum',
-          --   Event = ' Event',
-          --   Field = '󰜢 Field',
-          --   File = '󰈙 File',
-          --   Folder = '󰉋 Dir',
-          --   Function = '󰊕 Func',
-          --   Interface = ' Interface',
-          --   Keyword = '󰌆 Key',
-          --   Method = '  Method',
-          --   Module = ' Mod',
-          --   Operator = '󰆕 Op',
-          --   Property = '󰜢 Prop',
-          --   Reference = '󰈇 Ref',
-          --   Snippet = ' Snip',
-          --   Struct = '󰙅 Struct',
-          --   Text = '󰉿 Text',
-          --   TypeParameter = '',
-          --   Unit = ' Unit',
-          --   Value = '󰎠 Value',
-          --   Variable = '󰫧 Var',
-          -- },
           kindHlGroups = {
             Method = 'Function',
             Function = 'Function',
@@ -107,45 +80,6 @@ return {
       }
     })
 
-    vim.api.nvim_create_autocmd('ColorScheme', {
-      pattern = '*',
-      callback = function()
-        vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'None', fg = 'None' })   
-      end,
-    })
-
-    vim.fn['pum#set_option']({
-      border = 'rounded',
-      padding = false,
-      scrollbar_char = '┃',
-      item_orders = { 'kind', 'space', 'abbr', 'space', 'menu' },
-    })
-
-    vim.cmd[[
-      nnoremap :       <Cmd>call CommandlinePre()<CR>:
-
-      function! CommandlinePre() abort
-        cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1)<CR>
-        cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-        cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-        cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
-        cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-        cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-
-        " Enable command line completion for the buffer
-        call ddc#enable_cmdline_completion()
-      endfunction
-
-      function! CommandlinePost() abort
-        silent! cunmap <Tab>
-        silent! cunmap <S-Tab>
-        silent! cunmap <C-n>
-        silent! cunmap <C-p>
-        silent! cunmap <C-y>
-        silent! cunmap <C-e>
-      endfunction
-    ]]
-
     require('ddc_source_lsp_setup').setup()
     vim.fn['popup_preview#enable']()
     vim.fn['signature_help#enable']()
@@ -154,16 +88,56 @@ return {
   dependencies = {
     { 'vim-denops/denops.vim' },
     { 'Shougo/pum.vim' },
-    { 
-      'Shougo/ddc-ui-pum', 
-      config = function() 
+    {
+      'Shougo/ddc-ui-pum',
+      config = function()
+        vim.api.nvim_create_autocmd('ColorScheme', {
+          pattern = '*',
+          callback = function()
+            vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'None', fg = 'None' })
+          end,
+        })
+
+        vim.fn['pum#set_option']({
+          border = 'rounded',
+          padding = false,
+          scrollbar_char = '┃',
+          item_orders = { 'kind', 'space', 'abbr', 'space', 'menu' },
+        })
+
+        vim.cmd [[
+          nnoremap :       <Cmd>call CommandlinePre()<CR>:
+
+          function! CommandlinePre() abort
+            cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1)<CR>
+            cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+            cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+            cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+            cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+            cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+
+            autocmd User DDCCmdlineLeave ++once call CommandlinePost()
+
+            " Enable command line completion for the buffer
+            call ddc#enable_cmdline_completion()
+          endfunction
+
+          function! CommandlinePost() abort
+            silent! cunmap <Tab>
+            silent! cunmap <S-Tab>
+            silent! cunmap <C-n>
+            silent! cunmap <C-p>
+            silent! cunmap <C-y>
+            silent! cunmap <C-e>
+          endfunction
+        ]]
+
         vim.keymap.set('i', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>')
         vim.keymap.set('i', '<C-p>', '<Cmd>call pum#map#insert_relative(-1)<CR>')
         vim.keymap.set('i', '<C-y>', '<Cmd>call pum#map#confirm()<CR>')
         vim.keymap.set('i', '<C-e>', '<Cmd>call pum#map#cancel()<CR>')
         vim.keymap.set('i', '<PageDown>', '<Cmd>call pum#map#insert_relative_page(+1)<CR>')
         vim.keymap.set('i', '<PageUp>', '<Cmd>call pum#map#insert_relative_page(-1)<CR>')
-
       end
     },
     { 'uga-rosa/ddc-source-lsp-setup' },
@@ -172,7 +146,7 @@ return {
     { 'matsui54/denops-signature_help' },
     {
       'matsui54/denops-popup-preview.vim',
-      setup = function() 
+      setup = function()
         vim.g.popup_preview_config = {
           border = 'rounded',
           winblend = 30,
@@ -182,10 +156,9 @@ return {
     { 'matsui54/ddc-buffer' },
     { 'Shougo/ddc-around' },
     { 'Shougo/ddc-source-cmdline' },
-    { 'Shougo/ddc-source-cmdline-history'},
+    { 'Shougo/ddc-source-cmdline-history' },
     { 'Shougo/ddc-matcher_head' },
     { 'Shougo/ddc-sorter_rank' },
     { 'hrsh7th/vim-vsnip' },
   },
 }
-
