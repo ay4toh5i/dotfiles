@@ -9,7 +9,7 @@ local keys = {
   {
     key = 'd',
     mods = 'CMD',
-    action = wezterm.action.SplitPane { 
+    action = wezterm.action.SplitPane {
       direction = 'Right',
       top_level = true,
     }
@@ -17,7 +17,7 @@ local keys = {
   {
     key = 'd',
     mods = 'CMD|SHIFT',
-    action = wezterm.action.SplitPane { 
+    action = wezterm.action.SplitPane {
       direction = 'Down',
       top_level = true,
     }
@@ -36,13 +36,13 @@ local keys = {
     -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
     key = 'LeftArrow',
     mods = 'OPT',
-    action = wezterm.action{SendString='\x1bb'},
+    action = wezterm.action { SendString = '\x1bb' },
   },
   {
     -- Make Option-Right equivalent to Alt-f; forward-word
     key = 'RightArrow',
     mods = 'OPT',
-    action = wezterm.action{SendString='\x1bf'},
+    action = wezterm.action { SendString = '\x1bf' },
   },
 }
 
@@ -51,14 +51,14 @@ return {
   colors = {
     background = '#242933',
   },
-  -- window_background_opacity = 0.95,
-  -- text_background_opacity = 0.95,
+  window_background_opacity = 0.95,
+  text_background_opacity = 0.95,
   font_size = 16.0,
   font = wezterm.font 'Ricty for Powerline',
   keys = keys,
   hide_tab_bar_if_only_one_tab = true,
   window_decorations = 'INTEGRATED_BUTTONS | RESIZE',
   window_padding = {
-    top = '1.75cell',
+    top = '2.25cell',
   },
 }
