@@ -74,6 +74,8 @@ let mapleader=" "
 
 " enable ideavim easymotion plugin
 set easymotion
+set commentary
+set which-key
 
 nmap K <Action>(ShowHoverInfo)
 nmap gi <Action>(GotoImplementation)
