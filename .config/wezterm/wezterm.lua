@@ -44,6 +44,11 @@ local keys = {
     mods = 'OPT',
     action = wezterm.action { SendString = '\x1bf' },
   },
+  {
+    key = 't',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  }
 }
 
 return {
