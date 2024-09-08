@@ -9,3 +9,4 @@ keymap('n', '<Esc><Esc>', ':nohlsearch<CR><Esc>', {})
 
 keymap('n', '<C-h>', ':bprev<CR>', {})
 keymap('n', '<C-l>', ':bnext<CR>', {})
+keymap('n', '<C-i>', ':b#<CR>', {})
