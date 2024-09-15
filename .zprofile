@@ -32,6 +32,8 @@ bindkey "^S" history-incremental-search-forward
 # コマンドラインでのコメントを有効
 setopt interactivecomments
 
+zstyle ':completion:*:*:*:default' menu yes select search
+
 # pgp
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
