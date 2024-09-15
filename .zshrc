@@ -56,6 +56,7 @@ antigen apply
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+eval "$(mise activate zsh)"
 
 # pgp
 gpg-connect-agent /bye
