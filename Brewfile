@@ -25,6 +25,7 @@ brew "tig"
 brew "tree"
 brew "vim"
 brew "zsh"
+brew "zoxide"
 brew "sanemat/font/ricty", args: ["with-powerline"]
 cask "google-chrome"
 cask "iterm2"
