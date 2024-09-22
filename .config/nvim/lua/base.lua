@@ -10,6 +10,7 @@ vim.o.virtualedit = 'onemore'
 vim.o.visualbell = true
 vim.o.showmatch = true
 vim.o.wildmode = 'list:longest'
+vim.o.list = true
 vim.o.listchars = 'tab:▸-'
 vim.o.ignorecase = true 
 vim.o.smartcase = true
@@ -32,3 +33,10 @@ vim.opt.modifiable = true
 -- See https://qiita.com/delphinus/items/a202d0724a388f6cdbc3
 vim.opt.termguicolors = true
 vim.opt.pumblend = 5
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    vim.opt.expandtab = false
+  end
+})
