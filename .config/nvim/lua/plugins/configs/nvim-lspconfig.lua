@@ -60,7 +60,7 @@ return {
           return lspconfig.util.root_pattern('package.json')(vim.fn.getcwd())
         end
 
-        if server_name == 'denolsp' then
+        if server_name == 'denols' then
           lspconfig[server_name].setup {
             on_attach = function(client, bufnr)
               if is_node_dir() then
@@ -69,6 +69,7 @@ return {
 
               on_attach(client, bufnr)
             end,
+            single_file_support = true,
             flags = lsp_flags,
             init_options = {
               lint = true,
