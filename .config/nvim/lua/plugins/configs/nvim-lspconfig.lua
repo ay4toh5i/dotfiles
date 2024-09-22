@@ -53,13 +53,22 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup()
     require("mason-lspconfig").setup_handlers {
-      function(server_name)  -- default handler (optional)
+      function(server_name) -- default handler (optional)
         local lspconfig = require('lspconfig')
+
+        local is_node_dir = function()
+          return lspconfig.util.root_pattern('package.json')(vim.fn.getcwd())
+        end
 
         if server_name == 'denolsp' then
           lspconfig[server_name].setup {
-            root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json"),
-            on_attach = on_attach,
+            on_attach = function(client, bufnr)
+              if is_node_dir() then
+                client.stop(true)
+              end
+
+              on_attach(client, bufnr)
+            end,
             flags = lsp_flags,
             init_options = {
               lint = true,
@@ -77,8 +86,13 @@ return {
           }
         elseif server_name == 'ts_ls' then
           lspconfig[server_name].setup {
-            on_attach = on_attach,
-            root_dir = lspconfig.util.root_pattern("package.json"),
+            on_attach = function(client, bufnr)
+              if not is_node_dir() then
+                client.stop(true)
+              end
+
+              on_attach(client, bufnr)
+            end,
             single_file_support = false,
             flags = lsp_flags,
           }
