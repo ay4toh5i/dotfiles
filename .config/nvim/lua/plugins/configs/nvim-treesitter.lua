@@ -1,9 +1,9 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  config = function () 
+  config = function()
     require('nvim-treesitter.configs').setup({
-      ensure_installed = { 
+      ensure_installed = {
         'vim',
         'vimdoc',
         'lua',
@@ -11,17 +11,27 @@ return {
         'go',
         'c',
         'query',
+        'ruby',
+        'python',
+        'php',
         'typescript',
         'javascript',
         'tsx',
         'html',
         'css',
         'markdown',
+        'markdown_inline',
+        'json',
         'yaml',
+        'toml',
+        'regex',
+        'hcl',
+        'java',
+        'kotlin',
       },
       sync_install = false,
       highlight = { enable = true },
-      indent = { enable = false },  
+      indent = { enable = false },
       matchup = {
         enable = true,
       },
