@@ -16,7 +16,8 @@ return {
         file_ignore_patterns = {
           "^.git/",
           "^.cache/",
-          "^node_modules/",
+          "node_modules",
+          "cdk.out",
         },
         vimgrep_arguments = {
           "rg",
@@ -26,7 +27,7 @@ return {
           "--line-number",
           "--column",
           "--smart-case",
-          "-uu",
+          "--hidden",
         },
       },
       extensions = {
@@ -79,6 +80,7 @@ return {
     })
 
     require('telescope').load_extension('fzf')
+    require("telescope").load_extension("egrepify")
   end,
   keys = {
     { "<leader>ff", ":Telescope find_files hidden=true<CR>" },
