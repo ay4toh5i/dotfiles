@@ -7,4 +7,11 @@ return {
     -- refer to the configuration section below
     use_diagnostic_signs = true,
   },
+ keys = {
+    {
+      "<leader>xx",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Diagnostics (Trouble)",
+    },
+  }
 }
