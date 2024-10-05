@@ -4,6 +4,20 @@ return {
   config = function()
     require('ddc_source_lsp_setup').setup()
 
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = "󰧞",
+      },
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.HINT] = " ",
+        },
+      },
+    })
+
     -- Mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     local opts = { noremap = true, silent = true }
