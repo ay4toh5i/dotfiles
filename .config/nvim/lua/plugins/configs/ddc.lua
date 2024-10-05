@@ -7,7 +7,7 @@ return {
       ['autoCompleteEvents'] = { 'InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged' },
       ['backspaceCompletion'] = true,
       ['cmdlineSources'] = {
-        [':'] = { 'cmdline', 'cmdline-history', 'arround' },
+        [':'] = { 'cmdline', 'cmdline-history', 'around' },
       },
       ['sources'] = { 'copilot','lsp', 'around', 'buffer' },
       ['sourceOptions'] = {
@@ -162,7 +162,7 @@ return {
       end,
     },
     { 'matsui54/ddc-buffer' },
-    { 'Shougo/ddc-around' },
+    { 'Shougo/ddc-source-around' },
     { 'Shougo/ddc-source-cmdline' },
     { 'Shougo/ddc-source-cmdline-history' },
     { 'Shougo/ddc-matcher_head' },
