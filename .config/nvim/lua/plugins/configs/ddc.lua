@@ -110,6 +110,7 @@ return {
           scrollbar_char = '┃',
           item_orders = { 'kind', 'space', 'abbr', 'space', 'menu' },
           offset_cmdrow = 2,
+          max_height = 15,
         })
 
         vim.cmd [[
