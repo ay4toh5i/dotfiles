@@ -82,3 +82,5 @@ hello world -> "hello world"
    
    m ディレクトリ操作
  
+## Tips
+ - `:messages` でエラーメッセージを確認できる
