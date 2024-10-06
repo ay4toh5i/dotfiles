@@ -12,6 +12,7 @@ return {
         show_hidden = true,
       },
       float = {
+        max_width = 140,
         win_options = {
           winblend = 5,
         },
@@ -19,7 +20,7 @@ return {
     })
 
     local oil = require("oil")
-    vim.keymap.set('n', '<leader>o', function() oil.toggle_float() end)
+    vim.keymap.set('n', '<leader>oo', function() oil.toggle_float() end)
   end,
   -- Optional dependencies
   -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
