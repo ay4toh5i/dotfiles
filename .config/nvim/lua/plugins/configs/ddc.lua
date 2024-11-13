@@ -171,7 +171,7 @@ return {
     {
       'Shougo/ddc-source-copilot',
       config = function()
-        vim.g.copilot_no_maps = true
+        -- vim.g.copilot_no_maps = true
       end
     },
   },
