@@ -21,9 +21,8 @@ return {
         type = "telescope", -- or "fzf-lua"
       },
       last_session_on_startup = false,
-      session_manager_opts = {
-        autoload_mode = config.AutoloadMode.Disabled,
-      },
+      dashboard_mode = true,
+      session_manager_opts = {},
     })
 
     -- enable saving the state of plugins in the session
