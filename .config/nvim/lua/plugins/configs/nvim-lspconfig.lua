@@ -57,7 +57,7 @@ return {
         { desc = 'rename', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<space>ca', ':Lspsaga code_action<CR>',
         { desc = 'code action', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', 'gr', function() trouble.toggle('lsp_references') end,
+      vim.keymap.set('n', 'gr', function() trouble.toggle({ mode = 'lsp_references', focus = true }) end,
         { desc = 'references', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<space>fm', vim.lsp.buf.format,
         { desc = 'code format', noremap = true, silent = true, buffer = bufnr })
