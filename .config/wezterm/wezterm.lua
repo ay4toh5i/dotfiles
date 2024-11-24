@@ -70,4 +70,5 @@ return {
   window_padding = {
     top = '2.25cell',
   },
+  send_composed_key_when_right_alt_is_pressed = false, -- For using right option key as meta key. See https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=send_composed_key_when_left_alt_is_pressed#macos-left-and-right-option-key
 }
