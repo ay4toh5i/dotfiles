@@ -2,3 +2,7 @@
 disabled = false
 time_format = "%T"
 utc_time_offset = "+9"
+
+[cmd_duration]
+show_notifications = true
+min_time_to_notify = 10_003
