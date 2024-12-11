@@ -20,6 +20,7 @@ vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.cursorlineopt = 'both'
 vim.wo.cursorcolumn = true
+vim.wo.signcolumn = 'yes'
 
 vim.opt.fenc = 'UTF-8'
 vim.opt.smartindent = true 
