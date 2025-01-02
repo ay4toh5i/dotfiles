@@ -7,6 +7,10 @@ return {
         highlights.Visual = { bg = palette.gray2 }
         highlights.PmenuSel = { bg = palette.gray2 }
       end,
+      transparent = {
+        bg = true,
+        float = true,
+      },
     })
   end
 }
