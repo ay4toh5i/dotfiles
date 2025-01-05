@@ -72,6 +72,10 @@ Ctrl + v returnを押すと^Mを入力することができる。
 - チートシートを表示する
 :Cheatsheet
 
+## Tips
+ - `:messages` でエラーメッセージを確認できる
+
+---
 ### fugitive
 
 - git status
@@ -90,6 +94,4 @@ Ctrl + v returnを押すと^Mを入力することができる。
 
    
    m ディレクトリ操作
- 
-## Tips
- - `:messages` でエラーメッセージを確認できる
+
