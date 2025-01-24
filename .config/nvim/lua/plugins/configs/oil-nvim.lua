@@ -14,7 +14,7 @@ return {
       float = {
         max_width = 140,
         win_options = {
-          winblend = 5,
+          winblend = 0, -- for transparent background
         },
       }
     })
