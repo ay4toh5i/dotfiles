@@ -29,6 +29,8 @@ return {
         'hcl',
         'java',
         'kotlin',
+        'sql',
+        'xml',
       },
       sync_install = false,
       highlight = { enable = true },
