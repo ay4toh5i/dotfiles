@@ -23,39 +23,39 @@ ft.node_files = vim.iter({
     :totable()
 
 local convertT = {
-	denols = "deno",
-	vtsls = "tsserver",
+  denols = "deno",
+  vtsls = "tsserver",
 }
 
 ---@param key string
 local function getOptions(key)
-	local neoconf = require("neoconf")
+  local neoconf = require("neoconf")
 
-	local schemaT = vim.iter({ "", "vscode", "coc", "nlsp" }):map(function(configType)
-		return configType == "" and key or ("%s.%s"):format(configType, key)
-	end)
+  local schemaT = vim.iter({ "", "vscode", "coc", "nlsp" }):map(function(configType)
+    return configType == "" and key or ("%s.%s"):format(configType, key)
+  end)
 
-	---@type nil|string|table|integer|boolean
-	local item = vim.iter(schemaT)
-		:map(function(item)
-			return neoconf.get(item)
-		end)
-		:find(function(item)
-			return item ~= nil
-		end)
+  ---@type nil|string|table|integer|boolean
+  local item = vim.iter(schemaT)
+      :map(function(item)
+        return neoconf.get(item)
+      end)
+      :find(function(item)
+        return item ~= nil
+      end)
 end
 
 --@param name string
 local function isClientEnable(name)
-	name = assert(convertT[name] or name)
-	local enable = getOptions(name .. ".enable")
-	local disable = getOptions(name .. ".disable")
-	if enable == nil and disable == nil then
-		return nil
-	end
+  name = assert(convertT[name] or name)
+  local enable = getOptions(name .. ".enable")
+  local disable = getOptions(name .. ".disable")
+  if enable == nil and disable == nil then
+    return nil
+  end
 
-	local isEnable = enable == true or disable == false
-	return isEnable
+  local isEnable = enable == true or disable == false
+  return isEnable
 end
 
 ---@param path string
@@ -184,7 +184,16 @@ return {
     local lspconfig = require('lspconfig')
 
     require("mason").setup()
-    require("mason-lspconfig").setup()
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        'denols',
+        'ts_ls',
+        'gopls',
+        'rust_analyzer',
+        'typos_lsp',
+      },
+      automatic_installation = false,
+    })
     require("mason-lspconfig").setup_handlers({
       function(server_name) -- default handler (optional)
         lspconfig[server_name].setup({
