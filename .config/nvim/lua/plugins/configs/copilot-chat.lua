@@ -46,6 +46,19 @@ return {
         },
       },
     })
+
+    vim.api.nvim_create_autocmd('BufEnter', {
+      pattern = 'copilot-*',
+      callback = function()
+        vim.opt_local.cursorline = false
+        vim.opt_local.cursorcolumn = false
+
+        -- C-p to print last response
+        vim.keymap.set('n', '<C-p>', function()
+          print(require("CopilotChat").response())
+        end, { buffer = true, remap = true })
+      end
+    })
   end,
   -- See Commands section for default commands if you want to lazy load on them
   keys = {
