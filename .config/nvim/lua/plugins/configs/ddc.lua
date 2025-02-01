@@ -9,7 +9,7 @@ return {
       ['cmdlineSources'] = {
         [':'] = { 'cmdline', 'cmdline-history', 'around' },
       },
-      ['sources'] = { 'copilot','lsp', 'around', 'buffer' },
+      ['sources'] = { 'lsp', 'around', 'buffer' },
       ['sourceOptions'] = {
         ['_'] = {
           ignoreCase = true,
@@ -28,12 +28,6 @@ return {
           minAutoCompleteLength = 1,
           isVolatile = true,
         },
-        ['copilot'] = {
-          mark = '[copilot]',
-          matchers = {},
-          minAutoCompleteLength = 0,
-          isVolatile = true,
-        }
       },
       ['sourceParams'] = {
         ['lsp'] = {
@@ -169,11 +163,5 @@ return {
     { 'Shougo/ddc-matcher_head' },
     { 'Shougo/ddc-sorter_rank' },
     { 'hrsh7th/vim-vsnip' },
-    {
-      'Shougo/ddc-source-copilot',
-      config = function()
-        -- vim.g.copilot_no_maps = true
-      end
-    },
   },
 }
