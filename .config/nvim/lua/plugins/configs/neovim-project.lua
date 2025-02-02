@@ -22,7 +22,9 @@ return {
       },
       last_session_on_startup = false,
       dashboard_mode = true,
-      session_manager_opts = {},
+      session_manager_opts = {
+        autosave_last_session = true,
+      },
     })
 
     -- enable saving the state of plugins in the session
