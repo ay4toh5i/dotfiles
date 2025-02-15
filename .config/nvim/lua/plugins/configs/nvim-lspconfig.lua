@@ -189,6 +189,7 @@ return {
         'denols',
         'ts_ls',
         'gopls',
+        'golangci_lint_ls',
         'rust_analyzer',
         'typos_lsp',
       },
@@ -199,6 +200,17 @@ return {
         lspconfig[server_name].setup({
           on_attach = on_attach,
           flags = lsp_flags,
+        })
+      end,
+      golangci_lint_ls = function()
+        lspconfig.golangci_lint_ls.setup({
+          cmd = { "golangci-lint-langserver" },
+          on_attach = on_attach,
+          flags = lsp_flags,
+          root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+          init_options = {
+            command = { "golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1" },
+          },
         })
       end,
       denols = function()
