@@ -9,5 +9,6 @@ return {
     vim.keymap.set('n', '<space>tf', ':TestFile<CR>')
     vim.keymap.set('n', '<space>ts', ':TestSuite<CR>')
     vim.keymap.set('n', '<space>tl', ':TestLast<CR>')
-  end
+  end,
+  enabled = false,
 }
