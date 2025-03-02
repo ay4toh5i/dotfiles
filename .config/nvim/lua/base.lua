@@ -19,7 +19,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.cursorlineopt = 'both'
-vim.wo.cursorcolumn = true
+vim.wo.cursorcolumn = false
 vim.wo.signcolumn = 'yes'
 
 vim.opt.fenc = 'UTF-8'
