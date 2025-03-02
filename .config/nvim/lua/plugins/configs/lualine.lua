@@ -1,12 +1,40 @@
 return {
   'nvim-lualine/lualine.nvim',
   config = function()
+    local lsp_names = function()
+      local clients = vim
+          .iter(vim.lsp.get_clients { bufnr = 0 })
+          :map(function(client)
+            if client.name == 'copilot' then
+              return ''
+            elseif client.name == 'null-ls' then
+              return ('null-ls(%s)'):format(table.concat(
+                vim
+                .iter(require('null-ls.sources').get_available(vim.bo.filetype))
+                :map(function(source)
+                  return source.name
+                end)
+                :totable(),
+                ', '
+              ))
+            else
+              return client.name
+            end
+          end)
+          :totable()
+
+      return ' ' .. table.concat(clients, ', ')
+    end
+
     require('lualine').setup({
       options = {
         theme = 'nordic',
         globalstatus = true,
       },
       extensions = { 'neo-tree' },
+      sections = {
+        lualine_x = { lsp_names  },
+      },
     })
 
     local opts = require('lualine').get_config()
