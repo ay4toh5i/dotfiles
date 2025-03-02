@@ -1,3 +1,12 @@
+local icons = {
+  copilot = '',
+  denols = '',
+  ts_ls = '',
+  gopls = '',
+  rust_analyzer = '',
+  lua_ls = '',
+}
+
 return {
   'nvim-lualine/lualine.nvim',
   config = function()
@@ -5,9 +14,7 @@ return {
       local clients = vim
           .iter(vim.lsp.get_clients { bufnr = 0 })
           :map(function(client)
-            if client.name == 'copilot' then
-              return ''
-            elseif client.name == 'null-ls' then
+            if client.name == 'null-ls' then
               return ('null-ls(%s)'):format(table.concat(
                 vim
                 .iter(require('null-ls.sources').get_available(vim.bo.filetype))
@@ -18,7 +25,7 @@ return {
                 ', '
               ))
             else
-              return client.name
+              return icons[client.name] or client.name
             end
           end)
           :totable()
@@ -33,7 +40,7 @@ return {
       },
       extensions = { 'neo-tree' },
       sections = {
-        lualine_x = { lsp_names  },
+        lualine_x = { lsp_names },
       },
     })
 
