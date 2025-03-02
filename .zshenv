@@ -1,3 +1,4 @@
+export EDITOR=nvim
 export GOPATH=$HOME/.go
 export GO111MODULE=on
 export PATH="$PATH:$GOPATH/bin"
