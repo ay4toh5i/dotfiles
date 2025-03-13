@@ -29,6 +29,9 @@ setopt inc_append_history
 # インクリメンタルからの検索
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
+
+# Specify emacs like key bindings(this necessary if $EDITOR is set to vi/vim)
+bindkey -e
 # コマンドラインでのコメントを有効
 setopt interactivecomments
 
