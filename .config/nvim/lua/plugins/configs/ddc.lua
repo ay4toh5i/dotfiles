@@ -7,7 +7,7 @@ return {
       ['autoCompleteEvents'] = { 'InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged' },
       ['backspaceCompletion'] = true,
       ['cmdlineSources'] = {
-        [':'] = { 'cmdline', 'cmdline-history', 'around' },
+        [':'] = { 'cmdline', 'cmdline_history', 'around' },
       },
       ['sources'] = { 'lsp', 'around', 'buffer' },
       ['sourceOptions'] = {
@@ -159,7 +159,7 @@ return {
     { 'matsui54/ddc-buffer' },
     { 'Shougo/ddc-source-around' },
     { 'Shougo/ddc-source-cmdline' },
-    { 'Shougo/ddc-source-cmdline-history' },
+    { 'Shougo/ddc-source-cmdline_history' },
     { 'Shougo/ddc-matcher_head' },
     { 'Shougo/ddc-sorter_rank' },
     { 'hrsh7th/vim-vsnip' },
