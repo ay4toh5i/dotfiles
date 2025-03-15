@@ -28,11 +28,25 @@ return {
       desc = "Run the nearest test",
     },
     {
+      "<leader>tl",
+      function()
+        require("neotest").run.run_last()
+      end,
+      desc = "Run the last test",
+    },
+    {
       "<leader>tf",
       function()
         require("neotest").run.run(vim.fn.expand("%"))
       end,
       desc = "Run the current file test",
+    },
+    {
+      "<leader>ta",
+      function()
+        require("neotest").run.run({ suite = true })
+      end,
+      desc = "Run the test suite",
     },
     {
       "<leader>ts",
