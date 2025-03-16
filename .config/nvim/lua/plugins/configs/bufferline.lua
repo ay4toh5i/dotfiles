@@ -3,7 +3,10 @@ return {
   version = '*',
   config = function()
     require("bufferline").setup({
-      options = {},
+      options = {
+        indicator = { icon = ' ' },
+        separator_style = { '', '' },
+      },
     })
   end,
   dependencies = 'nvim-tree/nvim-web-devicons',
