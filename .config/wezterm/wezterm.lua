@@ -57,6 +57,7 @@ return {
     background = '#242933',
   },
   window_background_opacity = 0.95,
+  macos_window_background_blur = 20,
   text_background_opacity = 0.95,
   font_size = 14.0,
   font = wezterm.font_with_fallback {
