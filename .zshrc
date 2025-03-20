@@ -1,6 +1,6 @@
 # Alias for mac
 alias ls='ls -FG'
-alias ll='ls -ahlFG'
+alias ll='eza -al'
 alias tree='tree -L 2 -C'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
