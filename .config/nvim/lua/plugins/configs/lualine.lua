@@ -22,7 +22,7 @@ return {
                   return source.name
                 end)
                 :totable(),
-                ', '
+                ' '
               ))
             else
               return icons[client.name] or client.name
