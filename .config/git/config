@@ -1,34 +1,57 @@
 [user]
-	name = Ayato
-	email = ay4toh5i@gmail.com
-	signingkey = DC10D164A4E1B2BE2A7C4678F5556C0DC37D0FCD
-[color]
-	ui = auto
-[push]
-	default = current
-[core]
-	editor = nvim
-	autocrlf = input
-[merge]
-	ff = false
-[pull]
-	ff = only
-[init]
-	defaultBranch = main
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg
-[ghq]
-  user = ay4toh5i
+  name = Ayato
+  email = ay4toh5i@gmail.com
+  signingkey = DC10D164A4E1B2BE2A7C4678F5556C0DC37D0FCD
 [core]
   pager = delta
+  editor = nvim
+  autocrlf = input
+[init]
+  defaultBranch = main
+[color]
+  ui = auto
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[commit]
+  verbose = true
+  gpgsign = true
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+[diff]
+  algorithm = histogram
+  colorMoved = plain 
+  mnemonicPrefix = true
+  renames = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[pull]
+  ff = only
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[merge]
+  ff = false
+  conflictstyle = zdiff3
+[rerere]
+  enabled = true
+  autoUpdate = true
+[help]
+  autocorrect = prompt
+[gpg]
+  program = gpg
 [interactive]
   diffFilter = delta --color-only
+[ghq]
+  user = ay4toh5i
 [delta]
   navigate = true
   side-by-side = true
-[merge]
-  conflictstyle = zdiff3
-[diff]
-  colorMoved = default 
