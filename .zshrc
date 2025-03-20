@@ -52,7 +52,14 @@ source ~/dotfiles/antigen.zsh
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle olets/zsh-abbr@main
 antigen apply
+
+# register auto-expanding abbreviations
+ABBR_SET_EXPANSION_CURSOR=1
+abbr -S gsp="git switch -" > /dev/null
+abbr -S gcb="git checkout -b %" > /dev/null
+abbr -S gcbm="git checkout -b % main" > /dev/null
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
