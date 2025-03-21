@@ -30,6 +30,11 @@ return {
           "--hidden",
         },
       },
+      pickers = {
+        oldfiles = {
+          cwd_only = true,
+        },
+      },
       extensions = {
         fzf = {
           fuzzy = true,                   -- false will only do exact matching
