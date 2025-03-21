@@ -14,6 +14,7 @@ return {
       },
       filetypes = {
         yaml = true,
+        gitcommit = true,
       }
     })
   end
