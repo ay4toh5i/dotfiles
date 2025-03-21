@@ -192,6 +192,7 @@ return {
         'golangci_lint_ls',
         'rust_analyzer',
         'typos_lsp',
+        'buf_ls',
       },
       automatic_installation = false,
     })
