@@ -48,6 +48,14 @@ function cd2GitRepository() {
 zle -N cd2GitRepository
 bindkey '^g' cd2GitRepository
 
+function clearScreen() {
+  clear
+  zle redisplay
+}
+
+zle -N clearScreen
+bindkey '^[k' clearScreen
+
 source ~/dotfiles/antigen.zsh
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
