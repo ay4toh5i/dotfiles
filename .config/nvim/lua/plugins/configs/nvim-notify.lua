@@ -8,6 +8,5 @@ return {
       render = 'wrapped-default',
       max_width = 60,
     })
-    vim.notify = notify
   end,
 }
