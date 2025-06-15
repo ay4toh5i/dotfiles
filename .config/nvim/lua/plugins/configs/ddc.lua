@@ -31,7 +31,6 @@ return {
       },
       ['sourceParams'] = {
         ['lsp'] = {
-          lspEngine = 'nvim-lsp',
           snippetEngine = vim.fn['denops#callback#register'](function(body) vim.fn['vsnip#anonymous'](body) end),
           enableResolveItem = true,
           enableAdditionalTextEdit = true,
@@ -80,7 +79,6 @@ return {
       }
     })
 
-    require('ddc_source_lsp_setup').setup()
     vim.fn['popup_preview#enable']()
     vim.fn['signature_help#enable']()
     vim.fn['ddc#enable']()
@@ -143,7 +141,6 @@ return {
         vim.keymap.set('i', '<PageUp>', '<Cmd>call pum#map#insert_relative_page(-1)<CR>')
       end
     },
-    { 'uga-rosa/ddc-source-lsp-setup' },
     { 'Shougo/ddc-nvim-lsp' },
     { 'tani/ddc-fuzzy' },
     { 'matsui54/denops-signature_help' },

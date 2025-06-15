@@ -1,115 +1,7 @@
-local ft = {}
-ft.deno_files = {
-  "deno.json",
-  "deno.jsonc",
-  "denops",
-  "package.json",
-}
-
-ft.node_specific_files = {
-  "node_modules",
-  "bun.lockb",           -- bun
-  "package-lock.json",   -- npm or bun
-  "npm-shrinkwrap.json", -- npm
-  "yarn.lock",           -- yarn
-  "pnpm-lock.yaml",      -- pnpm
-}
-
-ft.node_files = vim.iter({
-      ft.node_specific_files,
-      "package.json",
-    })
-    :flatten(math.huge)
-    :totable()
-
-local convertT = {
-  denols = "deno",
-  vtsls = "tsserver",
-}
-
----@param key string
-local function getOptions(key)
-  local neoconf = require("neoconf")
-
-  local schemaT = vim.iter({ "", "vscode", "coc", "nlsp" }):map(function(configType)
-    return configType == "" and key or ("%s.%s"):format(configType, key)
-  end)
-
-  ---@type nil|string|table|integer|boolean
-  local item = vim.iter(schemaT)
-      :map(function(item)
-        return neoconf.get(item)
-      end)
-      :find(function(item)
-        return item ~= nil
-      end)
-end
-
---@param name string
-local function isClientEnable(name)
-  name = assert(convertT[name] or name)
-  local enable = getOptions(name .. ".enable")
-  local disable = getOptions(name .. ".disable")
-  if enable == nil and disable == nil then
-    return nil
-  end
-
-  local isEnable = enable == true or disable == false
-  return isEnable
-end
-
----@param path string
-local function findRootDirForDeno(path)
-  ---@type string|nil
-  local project_root =
-      vim.fs.root(path, vim.iter({ ".git", ft.deno_files, ft.node_specific_files }):flatten(math.huge):totable())
-  project_root = project_root or vim.env.PWD
-
-  local is_node_files_found = vim.iter(ft.node_specific_files):any(function(file)
-    return vim.uv.fs_stat(vim.fs.joinpath(project_root, file)) ~= nil
-  end)
-
-  -- when node files not found, launch denols
-  if not is_node_files_found then
-    local deps_path = vim.fs.joinpath(project_root, "deps.ts")
-    if vim.uv.fs_stat(deps_path) ~= nil then
-      vim.b[vim.fn.bufnr()].deno_deps_candidate = deps_path
-    end
-    return project_root
-  end
-
-  -- if node files found, check if deno is enabled for this project
-  -- check .vscode/settings.json or .neoconf.json for deno.enable and deno.enablePaths
-  -- local getOptions = require("neoconf-nvim").getOptions
-  local enable = getOptions("deno.enable")
-  local enable_paths = getOptions("deno.enablePaths")
-  if enable ~= false and type(enable_paths) == "table" then
-    local root_in_enable_path = vim.iter(enable_paths)
-        :map(function(p)
-          return vim.fs.joinpath(project_root, p)
-        end)
-        :find(function(absEnablePath)
-          return vim.startswith(path, absEnablePath)
-        end)
-    if root_in_enable_path ~= nil then
-      local deps_path = vim.fs.joinpath(root_in_enable_path, "deps.ts")
-      if vim.uv.fs_stat(deps_path) ~= nil then
-        vim.b[vim.fn.bufnr()].deno_deps_candidate = deps_path
-      end
-      return root_in_enable_path
-    end
-  end
-
-  -- otherwise, return nil
-  return nil
-end
-
 return {
   'neovim/nvim-lspconfig',
   event = "VeryLazy",
   config = function()
-    require('ddc_source_lsp_setup').setup({})
-
     vim.diagnostic.config({
       virtual_text = {
         prefix = "󰧞",
@@ -179,11 +71,6 @@ return {
       )
     end
 
-    local lsp_flags = {
-      -- This is the default in Nvim 0.7+
-      debounce_text_changes = 150,
-    }
-
     local lspconfig = require('lspconfig')
 
     require("mason").setup()
@@ -197,117 +84,95 @@ return {
         'typos_lsp',
         'buf_ls',
       },
+      automatic_enable = true,
       automatic_installation = false,
     })
-    require("mason-lspconfig").setup_handlers({
-      function(server_name) -- default handler (optional)
-        lspconfig[server_name].setup({
-          on_attach = on_attach,
-          flags = lsp_flags,
-        })
-      end,
-      golangci_lint_ls = function()
-        lspconfig.golangci_lint_ls.setup({
-          cmd = { "golangci-lint-langserver" },
-          on_attach = on_attach,
-          flags = lsp_flags,
-          root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
-          init_options = {
-            command = { "golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1" },
-          },
-        })
-      end,
-      denols = function()
-        lspconfig["denols"].setup({
-          on_attach = function(client, bufnr)
-            -- detach denols if vtsls or ts_ls is running. If no buffer is attached to denols, stop the client
-            vim.schedule(function()
-              ---@type vim.lsp.Client[]
-              local nodeLSPs = vim.iter({ "vtsls", "ts_ls" })
-                  :map(function(cn)
-                    return vim.lsp.get_clients({ name = cn, bufnr = bufnr })
-                  end)
-                  :flatten()
-                  :totable()
-              local denoLSPs = vim.lsp.get_clients({ name = "denols", bufnr = bufnr })
-              if #nodeLSPs > 0 and #denoLSPs > 0 then
-                vim.iter(denoLSPs):each(function(denoLSP)
-                  vim.lsp.stop_client(denoLSP.id)
-                  if #denoLSP.attached_buffers < 1 then
-                    vim.lsp.stop_client(denoLSP.id)
-                  end
-                end)
-              end
-            end)
 
-            on_attach(client, bufnr)
-          end,
-          root_dir = findRootDirForDeno,
-          single_file_support = true,
-          flags = lsp_flags,
-          init_options = {
-            lint = true,
-            unstable = true,
-            suggest = {
-              imports = {
-                hosts = {
-                  ["https://deno.land"] = true,
-                  ["https://cdn.nest.land"] = true,
-                  ["https://crux.land"] = true,
-                  ["https://esm.sh"] = true,
-                },
-              },
+    vim.lsp.config('*', {
+      capabilities = require("ddc_source_lsp").make_client_capabilities(),
+      on_attach = on_attach,
+      flags = {
+        debounce_text_changes = 150,
+      },
+    })
+
+    vim.lsp.config('golganci_lint_ls', {
+      cmd = { "golangci-lint-langserver" },
+      root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+      init_options = {
+        command = { "golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1" },
+      },
+    })
+
+    local on_lsp_attach = function(callback)
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local buffer = args.buf
+          local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+          callback(client, buffer)
+        end,
+      })
+    end
+
+    -- detach denols if vtsls or tsserver is running. If no buffer is attached to denols, stop the client
+   on_lsp_attach(function(client, bufnr)
+      local node_servers = { "vtsls", "tsserver", "ts_ls" }
+
+      if not vim.iter({ node_servers, "denols" }):flatten(math.huge):any(function(s)
+            return client.name == s
+          end) then
+        return
+      end
+
+      vim.schedule(function()
+        ---@type vim.lsp.Client[]
+        local nodeLSPs = vim.iter({ "vtsls", "tsserver", "ts_ls" })
+            :map(function(cn)
+              return vim.lsp.get_clients({ name = cn, bufnr = bufnr })
+            end)
+            :flatten()
+            :totable()
+        local denoLSPs = vim.lsp.get_clients({ name = "denols", bufnr = bufnr })
+        if #nodeLSPs > 0 and #denoLSPs > 0 then
+          vim.iter(denoLSPs):each(function(denoLSP)
+            vim.lsp.buf_detach_client(bufnr, denoLSP.id)
+          end)
+        end
+      end)
+    end)
+
+    vim.lsp.config('denols', {
+      single_file_support = true,
+      init_options = {
+        lint = true,
+        unstable = true,
+        suggest = {
+          imports = {
+            hosts = {
+              ["https://deno.land"] = true,
+              ["https://cdn.nest.land"] = true,
+              ["https://crux.land"] = true,
+              ["https://esm.sh"] = true,
             },
           },
-        })
-      end,
-      ts_ls = function()
-        lspconfig["ts_ls"].setup({
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-          end,
-          root_dir = function(path)
-            ---@param current_path string|nil
-            local function find_root(current_path)
-              if current_path == nil or current_path == "" then
-                return nil
-              end
+        },
+      },
+      workspace_required = false,
+    })
 
-              local project_root =
-                  vim.fs.root(current_path, vim.iter({ ".git", ft.node_files }):flatten(math.huge):totable())
-
-              if project_root == nil then
-                return nil
-              end
-
-              local is_node_files_found = vim.iter(ft.node_specific_files):any(function(file)
-                return vim.uv.fs_stat(vim.fs.joinpath(project_root, file)) ~= nil
-              end)
-
-              if is_node_files_found then
-                return project_root
-              end
-
-              if vim.uv.fs_stat(vim.fs.joinpath(project_root, ".git")) ~= nil then
-                return nil
-              end
-
-              return find_root(vim.fs.dirname(current_path))
-            end
-
-            return find_root(path)
-          end,
-          single_file_support = false,
-          flags = lsp_flags,
-        })
-      end,
+    vim.lsp.config('ts_ls', {
+      single_file_support = false,
+      root_markers = {
+        'package.json',
+      },
+      workspace_required = true,
     })
   end,
   dependencies = {
     { 'folke/neoconf.nvim' },
     { 'Shougo/ddc-source-lsp' },
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
+    { 'mason-org/mason.nvim' },
+    { 'mason-org/mason-lspconfig.nvim' },
     { 'folke/trouble.nvim' },
     {
       'onsails/lspkind.nvim',
