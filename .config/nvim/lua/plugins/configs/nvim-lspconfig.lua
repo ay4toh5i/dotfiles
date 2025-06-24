@@ -77,7 +77,7 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         'denols',
-        'ts_ls',
+        'vtsls',
         'gopls',
         'golangci_lint_ls',
         'rust_analyzer',
@@ -160,7 +160,7 @@ return {
       workspace_required = false,
     })
 
-    vim.lsp.config('ts_ls', {
+    vim.lsp.config('vtls', {
       single_file_support = false,
       root_markers = {
         'package.json',
