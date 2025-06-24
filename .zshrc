@@ -68,6 +68,8 @@ ABBR_SET_EXPANSION_CURSOR=1
 abbr -S gsp="git switch -" > /dev/null
 abbr -S gcb="git checkout -b %" > /dev/null
 abbr -S gcbm="git checkout -b % main" > /dev/null
+abbr -S gw="BRANCH=% && git worktree add ./worktrees/\$BRANCH -b \$BRANCH main && cd worktrees/\$BRANCH" > /dev/null
+abbr -S gwr="git worktree remove" >  /dev/null
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
