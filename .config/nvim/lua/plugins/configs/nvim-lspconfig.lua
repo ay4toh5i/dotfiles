@@ -20,10 +20,13 @@ return {
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float,
       { noremap = true, silent = true, desc = "Open diagnostic float" })
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
+
+    vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end,
       { noremap = true, silent = true, desc = "Go to previous diagnostic" })
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
+
+    vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end,
       { noremap = true, silent = true, desc = "Go to next diagnostic" })
+
     vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist,
       { noremap = true, silent = true, desc = "Set loclist" })
 
@@ -71,23 +74,6 @@ return {
       )
     end
 
-    local lspconfig = require('lspconfig')
-
-    require("mason").setup()
-    require("mason-lspconfig").setup({
-      ensure_installed = {
-        'denols',
-        'vtsls',
-        'gopls',
-        'golangci_lint_ls',
-        'rust_analyzer',
-        'typos_lsp',
-        'buf_ls',
-      },
-      automatic_enable = true,
-      automatic_installation = false,
-    })
-
     vim.lsp.config('*', {
       capabilities = require("ddc_source_lsp").make_client_capabilities(),
       on_attach = on_attach,
@@ -95,84 +81,11 @@ return {
         debounce_text_changes = 150,
       },
     })
-
-    vim.lsp.config('golganci_lint_ls', {
-      cmd = { "golangci-lint-langserver" },
-      root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
-      init_options = {
-        command = { "golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1" },
-      },
-    })
-
-    local on_lsp_attach = function(callback)
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          local buffer = args.buf
-          local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-          callback(client, buffer)
-        end,
-      })
-    end
-
-    -- detach denols if vtsls or tsserver is running. If no buffer is attached to denols, stop the client
-   on_lsp_attach(function(client, bufnr)
-      local node_servers = { "vtsls", "tsserver", "ts_ls" }
-
-      if not vim.iter({ node_servers, "denols" }):flatten(math.huge):any(function(s)
-            return client.name == s
-          end) then
-        return
-      end
-
-      vim.schedule(function()
-        ---@type vim.lsp.Client[]
-        local nodeLSPs = vim.iter({ "vtsls", "tsserver", "ts_ls" })
-            :map(function(cn)
-              return vim.lsp.get_clients({ name = cn, bufnr = bufnr })
-            end)
-            :flatten()
-            :totable()
-        local denoLSPs = vim.lsp.get_clients({ name = "denols", bufnr = bufnr })
-        if #nodeLSPs > 0 and #denoLSPs > 0 then
-          vim.iter(denoLSPs):each(function(denoLSP)
-            vim.lsp.buf_detach_client(bufnr, denoLSP.id)
-          end)
-        end
-      end)
-    end)
-
-    vim.lsp.config('denols', {
-      single_file_support = true,
-      init_options = {
-        lint = true,
-        unstable = true,
-        suggest = {
-          imports = {
-            hosts = {
-              ["https://deno.land"] = true,
-              ["https://cdn.nest.land"] = true,
-              ["https://crux.land"] = true,
-              ["https://esm.sh"] = true,
-            },
-          },
-        },
-      },
-      workspace_required = false,
-    })
-
-    vim.lsp.config('vtls', {
-      single_file_support = false,
-      root_markers = {
-        'package.json',
-      },
-      workspace_required = true,
-    })
   end,
   dependencies = {
     { 'folke/neoconf.nvim' },
+    { "mason-org/mason-lspconfig.nvim" },
     { 'Shougo/ddc-source-lsp' },
-    { 'mason-org/mason.nvim' },
-    { 'mason-org/mason-lspconfig.nvim' },
     { 'folke/trouble.nvim' },
     {
       'onsails/lspkind.nvim',
