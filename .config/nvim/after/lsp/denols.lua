@@ -1,6 +1,6 @@
 -- detach denols if vtsls or tsserver is running. If no buffer is attached to denols, stop the client
 require("core.plugin").on_attach(function(client, bufnr)
-	local node_servers = { "vtsls", "tsserver" }
+	local node_servers = { "vtsls", "tsserver", "ts_ls" }
 
 	if not vim.iter({ node_servers, "denols" }):flatten(math.huge):any(function(s)
 		return client.name == s
@@ -14,7 +14,7 @@ require("core.plugin").on_attach(function(client, bufnr)
 
 	vim.schedule(function()
 		---@type vim.lsp.Client[]
-		local nodeLSPs = vim.iter({ "vtsls", "tsserver" })
+		local nodeLSPs = vim.iter({ "vtsls", "tsserver", "ts_ls" })
 			:map(function(cn)
 				return vim.lsp.get_clients({ name = cn, bufnr = bufnr })
 			end)
