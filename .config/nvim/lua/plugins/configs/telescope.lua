@@ -113,6 +113,12 @@ return {
       desc = "Find buffers",
     },
     {
+      "<leader>fr",
+      ":Telescope resume<CR>",
+      silent = true,
+      desc = "Resume last Telescope search",
+    },
+    {
       "<leader>of",
       ":Telescope oldfiles<CR>",
       silent = true,
