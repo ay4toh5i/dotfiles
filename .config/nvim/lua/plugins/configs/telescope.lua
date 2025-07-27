@@ -7,6 +7,12 @@ return {
 
     require('telescope').setup({
       defaults = {
+        layout_config = {
+          horizontal = {
+            prompt_position = "top",
+          },
+        },
+        sorting_strategy = "ascending",
         mappings = {
           i = {
             ['<C-s>'] = actions.send_selected_to_qflist + actions.open_qflist,
