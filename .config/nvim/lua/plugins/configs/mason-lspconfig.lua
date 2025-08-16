@@ -8,7 +8,7 @@ return {
       ensure_installed = {
         'denols',
         'vtsls',
-        'eslint-lsp',
+        'eslint',
         'gopls',
         'golangci_lint_ls',
         'rust_analyzer',
