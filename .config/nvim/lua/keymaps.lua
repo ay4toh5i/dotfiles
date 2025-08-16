@@ -9,4 +9,4 @@ keymap('n', '<Esc><Esc>', ':nohlsearch<CR><Esc>', { silent = true })
 
 keymap('n', '<C-h>', ':bprev<CR>', { silent = true })
 keymap('n', '<C-l>', ':bnext<CR>', { silent = true })
-keymap('n', '<C-i>', ':b#<CR>', {})
+keymap('n', '<C-i>', ':b#<CR>', { silent = true})
