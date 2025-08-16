@@ -101,7 +101,7 @@ return {
           padding = false,
           scrollbar_char = '┃',
           item_orders = { 'kind', 'space', 'abbr', 'space', 'menu' },
-          offset_cmdrow = 2,
+          offset_cmdrow = -2,
           max_height = 15,
           blend = 0, -- for transparent background, any other value will make the pum background black
         })
