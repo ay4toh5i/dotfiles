@@ -22,7 +22,7 @@ return {
         ['lsp'] = {
           mark = '[lsp]',
           dup = 'keep',
-          sorters = { 'sorter_fuzzy', 'sorter_lsp-kind' },
+          sorters = { 'sorter_fuzzy', 'sorter_lsp_kind' },
           converters = { 'converter_fuzzy', 'converter_kind_labels' },
           forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
           minAutoCompleteLength = 1,
@@ -159,6 +159,8 @@ return {
     { 'Shougo/ddc-source-cmdline_history' },
     { 'Shougo/ddc-matcher_head' },
     { 'Shougo/ddc-sorter_rank' },
+    { 'Shougo/ddc-filter-converter_kind_labels' },
+    { 'Shougo/ddc-filter-sorter_lsp_kind' },
     { 'hrsh7th/vim-vsnip' },
   },
 }
