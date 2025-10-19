@@ -10,8 +10,11 @@ vim.o.virtualedit = 'onemore'
 vim.o.visualbell = true
 vim.o.showmatch = true
 vim.o.wildmode = 'list:longest'
-vim.o.list = true
-vim.o.listchars = 'tab:▸-'
+
+-- :set list → show hidden characters
+-- :set nolist → hide hidden characters
+vim.o.list = false
+
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
