@@ -36,23 +36,27 @@ return {
     lint = true,
     unstable = true,
     suggest = {
+      completeFunctionCalls = true,
+      names = true,
+      paths = true,
+      autoImports = true,
       imports = {
-        hosts = {
-          ["https://deno.land"] = true,
-          ["https://cdn.nest.land"] = true,
-          ["https://crux.land"] = true,
-          ["https://esm.sh"] = true,
-        },
+        autoDiscover = true,
+        hosts = vim.empty_dict(),
       },
     },
   },
-  workspace_required = false,
-  inlayHints = {
-    parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = true },
-    parameterTypes = { enabled = true },
-    variableTypes = { enabled = true, suppressWhenTypeMatchesName = true },
-    propertyDeclarationTypes = { enabled = true },
-    functionLikeReturnTypes = { enable = true },
-    enumMemberValues = { enabled = true },
+  settings = {
+    deno = {
+      inlayHints = {
+        parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = true },
+        parameterTypes = { enabled = true },
+        variableTypes = { enabled = true, suppressWhenTypeMatchesName = true },
+        propertyDeclarationTypes = { enabled = true },
+        functionLikeReturnTypes = { enable = true },
+        enumMemberValues = { enabled = true },
+      },
+    }
   },
+  workspace_required = false,
 }

@@ -1,11 +1,13 @@
 ---@type vim.lsp.Config
 return {
-  hints = {
-    assignVariableTypes = true,
-    compositeLiteralFields = true,
-    constantValues = true,
-    functionTypeParameters = true,
-    parameterNames = true,
-    rangeVariableTypes = true,
+  init_options = {
+    hints = {
+      assignVariableTypes = true,
+      compositeLiteralFields = true,
+      constantValues = true,
+      functionTypeParameters = true,
+      parameterNames = true,
+      rangeVariableTypes = true,
+    },
   },
 }
