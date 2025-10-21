@@ -7,7 +7,7 @@ return {
         rust = { "rustfmt", lsp_format = "fallback" },
         javascript = { "prettierd", "prettier", "biome", "deno_fmt", stop_after_first = true },
         typescript = { "prettierd", "prettier", "biome", "deno_fmt", stop_after_first = true },
-        json = { "jq", "prettierd", "prettier", stop_after_first = true },
+        json = { "jq", "prettierd", "prettier", "biome", stop_after_first = true },
         xml = { "xmllint" },
         yaml = { "yq" },
         proto = { "buf" },
