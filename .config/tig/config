@@ -1,4 +1,5 @@
 bind status A !git commit --amend
+bind status X !git commit --no-verify
 bind main <Ctrl-R> !git rebase -i --autosquash --autostash %(commit)
 bind main <Ctrl-F> !git commit --fixup %(commit)
 
