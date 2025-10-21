@@ -28,6 +28,7 @@ return {
           url = "https://json.schemastore.org/github-workflow.json",
         },
       },
+      validate = { enable = true },
     },
   },
 }
