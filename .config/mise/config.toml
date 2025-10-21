@@ -1,0 +1,6 @@
+[tools]
+deno = "latest"
+node = "lts"
+go = "latest"
+ruby = "3.4"
+java = "lts"
