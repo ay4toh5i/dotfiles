@@ -63,8 +63,6 @@ return {
         { desc = 'code action', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', 'gr', function() trouble.toggle({ mode = 'lsp_references', focus = true }) end,
         { desc = 'references', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>fm', vim.lsp.buf.format,
-        { desc = 'code format', noremap = true, silent = true, buffer = bufnr })
 
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
         vim.lsp.handlers.hover,

@@ -27,6 +27,6 @@ return {
     end, { range = true })
   end,
   keys = {
-    { '<leader>fM', '<cmd>Format<CR>', desc = 'Format by conform' },
+    { '<leader>fm', '<cmd>Format<CR>', desc = 'Format by conform' },
   },
 }
