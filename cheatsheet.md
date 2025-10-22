@@ -91,7 +91,29 @@ Ctrl + v returnを押すと^Mを入力することができる。
 
 ### NERDTree
    [vim-plugin NERDTree で開発効率をアップする！](https://qiita.com/zwirky/items/0209579a635b4f9c95ee)
-
-   
    m ディレクトリ操作
 
+## neovim
+
+### spectre
+グローバル検索&置換
+
+- `:Spectre`
+
+### nvim-treesitter-textsubjects
+visualモードで `.` でいい感じにテキスト選択
+
+- `.` : いい感じに選択、繰り返しかのう
+- `;` : コンテナの外側選択
+- `i;`: コンテナの内側選択
+
+### scratch
+一時ファイルでコーディング
+
+- `:Scratch`
+
+### code snap
+選択範囲をスクショ
+
+- `<leader>cs` : saving into clipboard
+- `<leader>cS` : saving into file
