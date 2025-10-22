@@ -22,7 +22,8 @@ return {
     local oil = require("oil")
     vim.keymap.set('n', '<leader>oo', function() oil.toggle_float() end, { desc = "Open Oil Float" })
   end,
-  -- Optional dependencies
-  -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "benomahony/oil-git.nvim",
+  },
 }
