@@ -18,7 +18,7 @@ return {
 
     -- Mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float,
+    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
       { noremap = true, silent = true, desc = "Open diagnostic float" })
 
     vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end,
@@ -27,7 +27,7 @@ return {
     vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end,
       { noremap = true, silent = true, desc = "Go to next diagnostic" })
 
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist,
+    vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
       { noremap = true, silent = true, desc = "Set loclist" })
 
     -- Use an on_attach function to only map the following keys
@@ -46,25 +46,25 @@ return {
         { desc = 'implementations', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
         { desc = 'signature', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>D', function() trouble.toggle('lsp_type_definitions') end,
+      vim.keymap.set('n', '<leader>D', function() trouble.toggle('lsp_type_definitions') end,
         { desc = 'type definition', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename,
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename,
         { desc = 'rename', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>ca', ':Lspsaga code_action<CR>',
+      vim.keymap.set('n', '<leader>ca', ':Lspsaga code_action<CR>',
         { desc = 'code action', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', 'gr', function() trouble.toggle({ mode = 'lsp_references', focus = true }) end,
         { desc = 'references', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<leader>lf', ':Lspsaga finder<CR>',
         { desc = 'finder', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<leader> lp', ':Lspsaga peek_definition<CR>',
+      vim.keymap.set('n', '<leader>lp', ':Lspsaga peek_definition<CR>',
         { desc = 'peek definition', noremap = true, silent = true, buffer = bufnr })
 
       -- workspace mappings
-      vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder,
+      vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder,
         { desc = 'add workspace folder', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+      vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder,
         { desc = 'remove workspace folder', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+      vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
         { desc = 'list workspace', noremap = true, silent = true, buffer = bufnr })
     end
 
