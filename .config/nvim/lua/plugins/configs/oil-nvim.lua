@@ -20,7 +20,7 @@ return {
     })
 
     local oil = require("oil")
-    vim.keymap.set('n', '<leader>oo', function() oil.toggle_float() end)
+    vim.keymap.set('n', '<leader>oo', function() oil.toggle_float() end, { desc = "Open Oil Float" })
   end,
   -- Optional dependencies
   -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
