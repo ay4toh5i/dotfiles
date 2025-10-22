@@ -4,7 +4,14 @@ return {
     require('lspsaga').setup({
       ui = {
         code_action = ' ',
-      }
+        button = { ' ', ' ' },
+      },
+      code_action = {
+        show_server_name = true,
+      },
+      lightbulb = {
+        virtual_text = false,
+      },
     })
   end,
   dependencies = {
