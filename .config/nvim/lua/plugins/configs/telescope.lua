@@ -117,6 +117,12 @@ return {
       desc = "Find buffers",
     },
     {
+      "<leader>fc",
+      ":Telescope commands<CR>",
+      silent = true,
+      desc = "Find commands",
+    },
+    {
       "<leader>fr",
       ":Telescope resume<CR>",
       silent = true,
