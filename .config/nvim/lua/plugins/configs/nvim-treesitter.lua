@@ -32,7 +32,10 @@ return {
         'sql',
         'xml',
       },
+      auto_install = true,
       sync_install = false,
+      modules = {},
+      ignore_install = {},
       highlight = { enable = true },
       indent = { enable = false },
       matchup = {
