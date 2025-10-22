@@ -32,10 +32,7 @@ return {
 
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
-    local on_attach = function(client, bufnr)
-      -- Enable completion triggered by <c-x><c-o>
-      vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
+    local on_attach = function(_, bufnr)
       local trouble = require('trouble')
 
       -- Mappings.
@@ -49,12 +46,6 @@ return {
         { desc = 'implementations', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
         { desc = 'signature', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder,
-        { desc = 'add workspace folder', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
-        { desc = 'remove workspace folder', noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-        { desc = 'list workspace', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<space>D', function() trouble.toggle('lsp_type_definitions') end,
         { desc = 'type definition', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename,
@@ -63,13 +54,18 @@ return {
         { desc = 'code action', noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', 'gr', function() trouble.toggle({ mode = 'lsp_references', focus = true }) end,
         { desc = 'references', noremap = true, silent = true, buffer = bufnr })
+      vim.keymap.set('n', '<leader>lf', ':Lspsaga finder<CR>',
+        { desc = 'finder', noremap = true, silent = true, buffer = bufnr })
+      vim.keymap.set('n', '<leader> lp', ':Lspsaga peek_definition<CR>',
+        { desc = 'peek definition', noremap = true, silent = true, buffer = bufnr })
 
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-        vim.lsp.handlers.hover,
-        {
-          border = "rounded", -- "shadow" , "none", "rounded"
-        }
-      )
+      -- workspace mappings
+      vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder,
+        { desc = 'add workspace folder', noremap = true, silent = true, buffer = bufnr })
+      vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+        { desc = 'remove workspace folder', noremap = true, silent = true, buffer = bufnr })
+      vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        { desc = 'list workspace', noremap = true, silent = true, buffer = bufnr })
     end
 
     vim.lsp.config('*', {

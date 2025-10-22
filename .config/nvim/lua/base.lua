@@ -38,6 +38,7 @@ vim.opt.fillchars:append({ eob = " " })
 -- See https://qiita.com/delphinus/items/a202d0724a388f6cdbc3
 vim.opt.termguicolors = true
 vim.opt.pumblend = 5
+vim.opt.winborder = "rounded"
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "go",
