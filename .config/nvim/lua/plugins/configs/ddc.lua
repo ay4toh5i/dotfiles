@@ -9,13 +9,13 @@ return {
       ['cmdlineSources'] = {
         [':'] = { 'cmdline', 'cmdline_history', 'around' },
       },
-      ['sources'] = { 'lsp', 'around', 'buffer', 'vsnip' },
+      ['sources'] = { 'lsp', 'vsnip', 'around', 'buffer' },
       ['sourceOptions'] = {
         ['_'] = {
           ignoreCase = true,
           matchers = { 'matcher_fuzzy' },
-          sorters = { 'sorter_fuzzy' },
-          converters = { 'converter_fuzzy' },
+          sorters = { 'sorter_fuzzy', 'sorter_lsp_kind' },
+          converters = { 'converter_fuzzy', 'converter_kind_labels' },
         },
         ['around'] = { mark = '[around]' },
         ['buffer'] = { mark = '[buffer]' },
@@ -23,14 +23,13 @@ return {
         ['lsp'] = {
           mark = '[lsp]',
           dup = 'keep',
-          sorters = { 'sorter_fuzzy', 'sorter_lsp_kind' },
-          converters = { 'converter_fuzzy', 'converter_kind_labels' },
           forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
           minAutoCompleteLength = 1,
           isVolatile = true,
         },
       },
       ['sourceParams'] = {
+        ['arorund'] = { maxSize = 10 },
         ['lsp'] = {
           snippetEngine = vim.fn['denops#callback#register'](function(body) vim.fn['vsnip#anonymous'](body) end),
           enableResolveItem = true,
@@ -43,7 +42,7 @@ return {
           kindLabels = {
             Text = ' ',
             Method = '',
-            Function = '',
+            Function = '󰊕',
             Constructor = '',
             Field = '',
             Variable = '',
@@ -55,9 +54,9 @@ return {
             Value = '',
             Enum = '',
             Keyword = '',
-            Snippet = '',
+            Snippet = '',
             Color = '',
-            File = '',
+            File = '',
             Reference = '',
             Folder = '',
             EnumMember = '',
@@ -156,7 +155,29 @@ return {
     { 'Shougo/ddc-sorter_rank' },
     { 'Shougo/ddc-filter-converter_kind_labels' },
     { 'Shougo/ddc-filter-sorter_lsp_kind' },
-    { 'hrsh7th/vim-vsnip' },
+    {
+      'hrsh7th/vim-vsnip',
+      config = function()
+        vim.api.nvim_create_autocmd('InsertEnter', {
+          callback = function()
+            vim.keymap.set({ 'i', 's' }, '<C-l>',
+              function() return vim.fn['vsnip#available'](1) == 1 and '<Plug>(vsnip-expand-or-jump)' or '<C-l>' end,
+              { expr = true, noremap = false })
+
+            vim.keymap.set({ 'i', 's' }, '<Tab>',
+              function() return vim.fn['vsnip#jumpable'](1) == 1 and '<Plug>(vsnip-jump-next)' or '<Tab>' end,
+              { expr = true, noremap = false })
+
+            vim.keymap.set({ 'i', 's' }, '<S-Tab>',
+              function() return vim.fn['vsnip#jumpable'](-1) == 1 and '<Plug>(vsnip-jump-prev)' or '<S-Tab>' end,
+              { expr = true, noremap = false })
+
+            vim.keymap.set({ 'n', 's' }, '<s>', [[<Plug>(vsnip-select-text)]], { expr = true, noremap = false })
+            vim.keymap.set({ 'n', 's' }, '<S>', [[<Plug>(vsnip-cut-text)]], { expr = true, noremap = false })
+          end,
+        })
+      end,
+    },
     { "rafamadriz/friendly-snippets" },
   },
 }
