@@ -9,7 +9,7 @@ return {
       ['cmdlineSources'] = {
         [':'] = { 'cmdline', 'cmdline_history', 'around' },
       },
-      ['sources'] = { 'lsp', 'around', 'buffer' },
+      ['sources'] = { 'lsp', 'around', 'buffer', 'vsnip' },
       ['sourceOptions'] = {
         ['_'] = {
           ignoreCase = true,
@@ -19,6 +19,7 @@ return {
         },
         ['around'] = { mark = '[around]' },
         ['buffer'] = { mark = '[buffer]' },
+        ['vsnip'] = { mark = '[vsnip]' },
         ['lsp'] = {
           mark = '[lsp]',
           dup = 'keep',
@@ -148,6 +149,7 @@ return {
     },
     { 'matsui54/ddc-buffer' },
     { 'Shougo/ddc-source-around' },
+    { 'uga-rosa/ddc-source-vsnip' },
     { 'Shougo/ddc-source-cmdline' },
     { 'Shougo/ddc-source-cmdline_history' },
     { 'Shougo/ddc-matcher_head' },
@@ -155,5 +157,6 @@ return {
     { 'Shougo/ddc-filter-converter_kind_labels' },
     { 'Shougo/ddc-filter-sorter_lsp_kind' },
     { 'hrsh7th/vim-vsnip' },
+    { "rafamadriz/friendly-snippets" },
   },
 }
