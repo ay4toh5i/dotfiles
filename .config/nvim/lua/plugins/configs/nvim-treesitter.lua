@@ -47,7 +47,12 @@ return {
     })
   end,
   dependencies = {
-    { 'andymass/vim-matchup' },
+    {
+      'andymass/vim-matchup',
+      config = function()
+        vim.g.matchup_treesitter_disable_virtual_text = true
+      end,
+    },
     { 'RRethy/nvim-treesitter-endwise' },
   }
 }
