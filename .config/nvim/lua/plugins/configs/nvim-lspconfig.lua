@@ -81,6 +81,7 @@ return {
     { "mason-org/mason-lspconfig.nvim" },
     { 'Shougo/ddc-source-lsp' },
     { 'folke/trouble.nvim' },
+    { 'creativenull/efmls-configs-nvim' },
     {
       'onsails/lspkind.nvim',
       config = function()

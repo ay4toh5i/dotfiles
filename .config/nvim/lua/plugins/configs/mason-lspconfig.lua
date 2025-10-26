@@ -21,6 +21,7 @@ return {
         'yamlls',
         'typos_lsp',
         'terraformls',
+        'efm',
       },
       automatic_enable = true,
       automatic_installation = false,
