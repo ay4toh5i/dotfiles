@@ -2,6 +2,7 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+  enabled = false,
   opts = {
     -- add any opts here
     provider = "copilot",
