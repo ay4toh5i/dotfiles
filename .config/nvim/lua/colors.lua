@@ -11,8 +11,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, "SagaBorder", { link = "FloatBorder" })
 
     -- RRethy/vim-illuminate
-    vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = palette.gray1, bold = true })
-    vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = palette.gray1, bold = true })
-    vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = palette.gray1, bold = true })
+    vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = palette.gray2, bold = true })
+    vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = palette.gray2, bold = true })
+    vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = palette.gray2, bold = true })
   end,
 })
