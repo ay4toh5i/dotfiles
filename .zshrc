@@ -4,6 +4,9 @@ done
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+# Specify emacs like key bindings(this necessary if $EDITOR is set to vi/vim)
+bindkey -e
+
 # pgp
 gpg-connect-agent /bye
 
