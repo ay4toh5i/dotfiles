@@ -56,7 +56,6 @@ brew "poppler"
 brew "ripgrep"
 brew "sevenzip"
 brew "starship"
-brew "task", link: false
 brew "tig"
 brew "tmux"
 brew "tree"
