@@ -65,7 +65,7 @@ while read -r path; do
   fi
 
   ln -snfv "${DOT_DIRECTORY}/${path#\./}" "${HOME}/${path#\./}"
-done < <(find . -type f -not -path '*/\.git/*' -not -name '\.gitignore' -not -name 'README.md')
+done < <(find . -type f -not -path '*/\.git/*' -not -name '\.gitignore' -not -name 'README.md' -not -name 'init.sh')
 
 # install zsh  plugin manger
 curl -L git.io/antigen > antigen.zsh
