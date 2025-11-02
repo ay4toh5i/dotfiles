@@ -58,7 +58,7 @@ return {
   },
   window_background_opacity = 0.85,
   macos_window_background_blur = 35,
-  text_background_opacity = 0.85,
+  text_background_opacity = 1.0, -- Make text background fully opaque to keep text color consistent
   font_size = 14.0,
   font = wezterm.font_with_fallback {
     '0xProto Nerd Font',
