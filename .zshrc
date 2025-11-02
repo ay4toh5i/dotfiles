@@ -1,81 +1,14 @@
-# Alias for mac
-alias ls='ls -FG'
-alias ll='eza -al'
-alias tree='tree -L 2 -C'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+for i in $(/bin/ls $HOME/.zshrc.d/*.zsh | sort); do
+	source $i
+done
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-export FZF_CTRL_T_OPTS='--preview "bat  --color=always --style=header,grid --line-range :100 {}"'
-
-function checkout () {
-  local result output selected
-
-  result="1"
-  output=$(git status 2>&1 > /dev/null)
-  result=$?
-
-  if [[ $result = "0" ]]; then
-    selected=$(git branch | fzf --reverse --prompt "CHECKOUT " --height 40% --inline-info | tr -d " ")
-    if [[ -n $selected ]]; then
-      git checkout $selected
-    fi
-  else
-    echo $output
-  fi
-
-  zle accept-and-hold
-}
-
-zle -N checkout
-bindkey '^b' checkout
-
-function changeDirectory() {
-  cd $(fd -t d --hidden -d 3 | fzf --reverse --height 40% | sed -e 's/^/\.\//')
-  zle accept-line
-}
-
-zle -N changeDirectory
-bindkey '^l' changeDirectory
-
-function cd2GitRepository() {
-  cd $(ghq list --full-path | fzf --reverse)
-  zle accept-line
-}
-
-zle -N cd2GitRepository
-bindkey '^g' cd2GitRepository
-
-function clearScreen() {
-  clear
-  zle redisplay
-}
-
-zle -N clearScreen
-bindkey '^[k' clearScreen
-
-source ~/dotfiles/antigen.zsh
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle olets/zsh-abbr@main
-antigen apply
-
-# register auto-expanding abbreviations
-ABBR_SET_EXPANSION_CURSOR=1
-abbr -S gsp="git switch -" > /dev/null
-abbr -S gcb="git checkout -b %" > /dev/null
-abbr -S gcbm="git checkout -b % main" > /dev/null
-abbr -S gw="BRANCH=% && git worktree add ./worktrees/\$BRANCH -b \$BRANCH main && cd worktrees/\$BRANCH" > /dev/null
-abbr -S gwm="cd \$(git worktree list | awk '{print \$1}' | fzf --reverse)" > /dev/null
-abbr -S gwt="cd \$(git worktree list | awk '{print \$1}' | awk 'NR==1||length<m{m=length;s=\$0}END{print s}')" > /dev/null
-abbr -S gwr="git worktree remove" >  /dev/null
+# pgp
+gpg-connect-agent /bye
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
-# pgp
-gpg-connect-agent /bye
+. "$HOME/.local/bin/env"
