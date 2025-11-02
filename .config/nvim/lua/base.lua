@@ -34,6 +34,10 @@ vim.opt.swapfile = false
 vim.opt.syntax = 'ON'
 vim.opt.modifiable = true
 vim.opt.fillchars:append({ eob = " " })
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 -- filetype plugin indent true
 -- See https://qiita.com/delphinus/items/a202d0724a388f6cdbc3
 vim.opt.termguicolors = true
