@@ -11,7 +11,7 @@ endif
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  let g:base_dir = expand('~/.vim/dein')
+  let g:base_dir = expand('~/.config/vim/dein')
 
   let s:toml = g:base_dir . '/dein.toml'
   call dein#load_toml(s:toml, {'lazy': 0})

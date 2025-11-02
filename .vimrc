@@ -1,4 +1,4 @@
-source $HOME/.vim/dein/init.vim
+source $HOME/.config/vim/dein/init.vim
 
 " set leader
 let mapleader = "\<Space>"
