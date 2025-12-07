@@ -50,3 +50,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.expandtab = false
   end
 })
+
+-- MDX filetype and treesitter support
+vim.filetype.add({
+  extension = {
+    mdx = "mdx",
+  },
+})
+
+vim.treesitter.language.register("markdown", { "mdx" })
