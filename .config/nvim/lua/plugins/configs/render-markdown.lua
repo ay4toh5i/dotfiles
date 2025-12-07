@@ -6,6 +6,9 @@ return {
   ---@type render.md.UserConfig
   opts = {
     file_types = { 'markdown', 'mdx', 'copilot-chat', 'Avante' },
+    code = {
+      width = "block",
+    },
     overrides = {
       buftype = {
         nofile = {
