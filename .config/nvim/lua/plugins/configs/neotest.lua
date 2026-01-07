@@ -13,9 +13,9 @@ return {
         require("neotest-vitest"),
         require("neotest-jest"),
         require("neotest-rust"),
-        require("neotest-vim-test")({
-          ignore_file_types = { "rust", "go", "ts", "js" },
-        }),
+        -- require("neotest-vim-test")({
+        --   ignore_file_types = { "rust", "go", "ts", "js" },
+        -- }),
       },
     })
   end,
@@ -67,9 +67,15 @@ return {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter",
+    { "nvim-treesitter/nvim-treesitter", branch = "main" },
     "nvim-neotest/neotest-vim-test",
-    { "fredrikaverpil/neotest-golang", version = "*" },
+    {
+      "fredrikaverpil/neotest-golang",
+      version = "*",
+      build = function()
+        vim.system({ "go", "install", "gotest.tools/gotestsum@latest" }):wait()
+      end,
+    },
     "marilari88/neotest-vitest",
     "nvim-neotest/neotest-jest",
     "rouge8/neotest-rust",

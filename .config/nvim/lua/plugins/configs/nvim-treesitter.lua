@@ -1,49 +1,51 @@
+local languages = {
+  'bash',
+  'vim',
+  'vimdoc',
+  'lua',
+  'rust',
+  'go',
+  'c',
+  'query',
+  'ruby',
+  'python',
+  'php',
+  'typescript',
+  'javascript',
+  'tsx',
+  'html',
+  'css',
+  'markdown',
+  'markdown_inline',
+  'json',
+  'yaml',
+  'toml',
+  'regex',
+  'hcl',
+  'java',
+  'kotlin',
+  'sql',
+  'xml',
+}
+
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
+  branch = 'main',
   config = function()
-    require('nvim-treesitter.configs').setup({
-      ensure_installed = {
-        'bash',
-        'vim',
-        'vimdoc',
-        'lua',
-        'rust',
-        'go',
-        'c',
-        'query',
-        'ruby',
-        'python',
-        'php',
-        'typescript',
-        'javascript',
-        'tsx',
-        'html',
-        'css',
-        'markdown',
-        'markdown_inline',
-        'json',
-        'yaml',
-        'toml',
-        'regex',
-        'hcl',
-        'java',
-        'kotlin',
-        'sql',
-        'xml',
-      },
-      auto_install = true,
-      sync_install = false,
-      modules = {},
-      ignore_install = {},
-      highlight = { enable = true },
-      indent = { enable = false },
-      matchup = {
-        enable = true,
-      },
-      endwise = {
-        enable = true,
-      },
+    require('nvim-treesitter').install(languages)
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = languages,
+      callback = function()
+        -- syntax highlighting, provided by Neovim
+        vim.treesitter.start()
+        -- folds, provided by Neovim
+        -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        -- vim.wo.foldmethod = 'expr'
+        -- indentation, provided by nvim-treesitter
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
     })
   end,
   dependencies = {
