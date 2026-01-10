@@ -7,3 +7,5 @@ abbr -S gw="BRANCH=% && git worktree add ./worktrees/\$BRANCH -b \$BRANCH main &
 abbr -S gwm="cd \$(git worktree list | awk '{print \$1}' | fzf --reverse)" > /dev/null
 abbr -S gwt="cd \$(git worktree list | awk '{print \$1}' | awk 'NR==1||length<m{m=length;s=\$0}END{print s}')" > /dev/null
 abbr -S gwr="git worktree remove" >  /dev/null
+
+abbr -S gal="gcloud auth login --update-adc" > /dev/null
