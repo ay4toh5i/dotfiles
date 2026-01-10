@@ -28,6 +28,9 @@ local languages = {
   'xml',
 }
 
+-- Install Tree-Sitter CLI
+-- https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md
+
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
