@@ -2,7 +2,9 @@ return {
   'lewis6991/gitsigns.nvim',
    event = "VeryLazy",
   config = function()
-    require('gitsigns').setup()
+    require('gitsigns').setup({
+      word_diff = true,
+    })
   end,
   keys = {
     { '<leader>gb', '<cmd>Gitsigns blame<cr>',        desc = 'Blame' },
