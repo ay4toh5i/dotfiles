@@ -1,4 +1,4 @@
-source ~/dotfiles/antigen.zsh
+source ~/dotfiles/home/antigen.zsh
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions

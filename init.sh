@@ -3,6 +3,7 @@
 set -u
 
 DOT_DIRECTORY="${HOME}/dotfiles"
+DOT_DIRECTORY_HOME="${DOT_DIRECTORY}/home"
 GITHUB_URL="https://github.com/ay4toh5i/dotfiles"
 
 # is_exists returns true if ececutable $1 exists in $PATH
@@ -50,9 +51,9 @@ if [ ! -d ${DOT_DIRECTORY} ]; then
   fi
 fi
 
-cd ${DOT_DIRECTORY}
+cd ${DOT_DIRECTORY_HOME}
 if [ $? -ne 0 ]; then
-  die "not found: ${DOT_DIRECTORY}"
+  die "not found: ${DOT_DIRECTORY_HOME}"
 fi
 
 echo "Deploying dotfiles.."
@@ -64,8 +65,8 @@ while read -r path; do
     mkdir -p "${HOME}/${basedir#\./}"
   fi
 
-  ln -snfv "${DOT_DIRECTORY}/${path#\./}" "${HOME}/${path#\./}"
-done < <(find . -type f -not -path '*/\.git/*' -not -name '\.gitignore' -not -name 'README.md' -not -name 'init.sh')
+  ln -snfv "${DOT_DIRECTORY_HOME}/${path#\./}" "${HOME}/${path#\./}"
+done < <(find . -type f -not -path '*/\.git/*' -not -name '\.gitignore')
 
 # install zsh  plugin manger
 curl -L git.io/antigen > antigen.zsh
