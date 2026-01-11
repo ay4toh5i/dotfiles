@@ -1,5 +1,8 @@
-## my vim cheatsheet
-- gd 
+# my vim cheatsheet
+
+## General key mappings
+
+- gd
 カーソル位置の単語の定義を関数内で探す
 - gD
 カーソル位置の単語をファイル内で探す
@@ -17,12 +20,14 @@
 小文字と大文字を切り替える
 
 ## ヤンク
+
 ヤンクするとレジスターに溜まっていく
 :regでレジスターを確認できる
 "0で前々回ヤンクした物が参照できるので
 "0pなどでペーストできる。
 
 ## surround.vim
+
 - cs"'
 "hello" -> 'hello'
 - ds"
@@ -35,15 +40,18 @@ hello/world -> "hello/world"
 hello world -> "hello world"
 
 ## commentary
+
 - gcc
 一行コメントアウト
 - gc
 選択範囲コメントアウト
 
 ## easy motion
-- <LEADER> <LEADER> w
+
+- `<LEADER> <LEADER> w`
 
 ## wordとWORD
+
 - word
 アルファベット、数字、アンスコのいずれかが並んだもの、その三種類以外の非空白文字が並んだもの
 - WORD
@@ -73,34 +81,21 @@ Ctrl + v returnを押すと^Mを入力することができる。
 :Cheatsheet
 
 ## Tips
- - `:messages` でエラーメッセージを確認できる
+
+- `:messages` でエラーメッセージを確認できる
 
 ---
-### fugitive
-
-- git status
-  :Gstatus
-   → 「-」でステージングの状態の切り替え
-   → 「D」でDiff、またはds,dv
-   → 「U」でrevert
-   → 「cc」でコミット
-   → 「=」でその場で差分を表示
-- git blame
-  :Gblame
-   [vimの便利なPlugin（その19）fugitive.vim ~ vimからGitを簡単操作](http://engineerspirit.com/2017/05/13/post-1308/)
-
-### NERDTree
-   [vim-plugin NERDTree で開発効率をアップする！](https://qiita.com/zwirky/items/0209579a635b4f9c95ee)
-   m ディレクトリ操作
 
 ## neovim
 
 ### spectre
+
 グローバル検索&置換
 
 - `:Spectre`
 
 ### nvim-treesitter-textsubjects
+
 visualモードで `.` でいい感じにテキスト選択
 
 - `.` : いい感じに選択、繰り返しかのう
@@ -108,11 +103,13 @@ visualモードで `.` でいい感じにテキスト選択
 - `i;`: コンテナの内側選択
 
 ### scratch
+
 一時ファイルでコーディング
 
 - `:Scratch`
 
 ### code snap
+
 選択範囲をスクショ
 
 - `<leader>cs` : saving into clipboard
