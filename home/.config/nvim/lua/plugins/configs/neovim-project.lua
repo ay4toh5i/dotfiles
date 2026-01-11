@@ -73,7 +73,7 @@ return {
         vim.keymap.set('n', '<space>sl',
           function()
             if not sm.load_git_session() then
-              sm.load_current_dir_session()
+              sm.load_current_git_session()
             end
           end,
           {
