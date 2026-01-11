@@ -2,9 +2,7 @@ return {
   'lewis6991/gitsigns.nvim',
    event = "VeryLazy",
   config = function()
-    require('gitsigns').setup({
-      word_diff = true,
-    })
+    require('gitsigns').setup()
   end,
   keys = {
     { '<leader>gb', '<cmd>Gitsigns blame<cr>',        desc = 'Blame' },
@@ -13,5 +11,6 @@ return {
     { '<leader>gR', '<cmd>Gitsigns reset_buffer<cr>', desc = 'Reset Buffer' },
     { '<leader>gm', '<cmd>Gitsigns change_base main<cr>', desc = 'Change Base to Main' },
     { '<leader>gH', '<cmd>Gitsigns change_base HEAD<cr>', desc = 'Change Base to HEAD' },
+    { '<leader>gdw', '<cmd>Gitsigns toggle_word_diff<cr>', desc = 'Toggle Word Diff' },
   },
 }
