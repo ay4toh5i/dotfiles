@@ -1,8 +1,9 @@
 return {
   "otavioschwanck/github-pr-reviewer.nvim",
-  opts = {
-    -- options here
-  },
+  event = "VeryLazy",
+  config = function()
+    require("github-pr-reviewer").setup()
+  end,
   keys = {
     {
       "<leader>gR",
