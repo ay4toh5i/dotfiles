@@ -1,6 +1,101 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "WebFetch",
+      "mcp__context7",
+      "mcp__chrome-devtools",
+      "mcp__serena",
+      "mcp__gemini-cli",
+      "mcp__aws-cdk-mcp-server",
+      "mcp__aws-documentation-mcp-server",
+      "mcp__playwright",
+      "mcp__mcp-google-sheets"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(chmod 777:*)",
+      "Bash(> /dev:*)",
+      "Bash(mkfs:*)",
+      "Bash(dd:*)",
+      "Bash(gh repo delete:*)",
+      "Bash(gh auth logout:*)",
+      "Bash(gh secret delete:*)",
+      "Bash(gh variable delete:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm remove:*)",
+      "Bash(terraform state push)",
+      "Bash(terraform apply:*)",
+      "Bash(terragrunt apply:*)",
+      "Bash(just apply:*)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(.envrc)",
+      "Read(~/.aws/**)",
+      "Read(~/.ssh/id_*)",
+      "Read(~/.gnupg/**)",
+      "Read(./secrets/**)",
+      "Read(**/credentials.json)",
+      "Read(**/*token*)",
+      "Edit(.env)",
+      "Edit(.env.*)",
+      "Edit(~/.ssh/**)",
+      "Edit(~/.aws/**)",
+      "Write(.env*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh issue create:*)",
+      "Bash(gh release create:*)",
+      "Bash(aws:*)"
+    ],
+    "additionalDirectories": []
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cols=$(jq -r --arg pane \"$WEZTERM_PANE\" 'first(.[] | select(.pane_id==($pane|tonumber)) | .size.cols) // empty' <<<\"$(wezterm cli list --format=json 2>/dev/null)\"); [ -n \"$cols\" ] || cols=$COLUMNS; [ -n \"$cols\" ] || cols=$(tput cols 2>/dev/null || echo 80); cols=$((cols - 10)); line=$(printf '─%.0s' $(seq 1 $cols)); echo \"{\\\"systemMessage\\\": \\\"$line\\\"}\""
+          },
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude\" -message \"$(basename \"$PWD\")\" & \nafplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Notification\" -message \"$(basename \"$PWD\")\" & \nafplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": []
+  },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh"
+    "command": "npx -y ccusage statusline",
+    "padding": 0
+  },
+  "enabledPlugins": {},
+  "preferences": {
+    "language": "ja"
   }
 }
