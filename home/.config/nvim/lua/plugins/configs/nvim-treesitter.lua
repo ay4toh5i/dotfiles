@@ -6,6 +6,7 @@ local languages = {
   'rust',
   'go',
   'c',
+  'nix',
   'query',
   'ruby',
   'python',
