@@ -70,3 +70,8 @@ done < <(find . -type f -not -path '*/\.git/*' -not -name '\.gitignore')
 
 # install zsh  plugin manger
 curl -L git.io/antigen > antigen.zsh
+
+if ! has "nix"; then
+  echo "Installing Nix..."
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+fi
