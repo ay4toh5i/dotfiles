@@ -15,7 +15,6 @@ brew "berkeley-db", link: true
 brew "glib"
 brew "cairo"
 brew "coreutils"
-brew "deno"
 brew "exiftool"
 brew "libgit2"
 brew "eza"
