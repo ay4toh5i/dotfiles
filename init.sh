@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -u
+set -eo pipefail
 
 DOT_DIRECTORY="${HOME}/dotfiles"
 DOT_DIRECTORY_HOME="${DOT_DIRECTORY}/home"
