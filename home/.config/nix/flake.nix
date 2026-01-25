@@ -3,13 +3,28 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs }: {
-
-    packages.aarch64-darwin.hello = nixpkgs.legacyPackages.aarch64-darwin.hello;
-
-    packages.aarch64-darwin.default = self.packages.aarch64-darwin.hello;
-
-  };
+  outputs = 
+    { self, nixpkgs, flake-utils, ... }:
+    flake-utils.lib.eachDefaultSystem(
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        packages = {
+          default = pkgs.hello;
+          git = pkgs.git;
+          tools = pkgs.buildEnv {
+            name = "tools";
+            paths = with pkgs; [
+              git
+              k6
+            ];
+          };
+        };
+      }
+  );
 }
