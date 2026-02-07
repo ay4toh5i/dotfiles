@@ -52,14 +52,14 @@
     ) // {
       darwinConfigurations = {
         "Ayatos-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-          modules = [ ./darwin ];
+          modules = [ ./nix/darwin ];
         };
       };
       homeConfigurations = {
         "ayato" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."aarch64-darwin";
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home-manager/macos.nix ];
+          modules = [ ./nix/home-manager/macos.nix ];
         };
       };
     };
