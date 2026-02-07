@@ -11,14 +11,10 @@
 
     taps = [
       "homebrew/bundle"
-      "qmk/qmk"
       "sanemat/font"
     ];
 
-    brews = [
-      "pinentry-mac"
-      "qmk/qmk/qmk"
-    ];
+    brews = [];
 
     casks = [
       "alt-tab"

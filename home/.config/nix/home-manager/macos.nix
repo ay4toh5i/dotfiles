@@ -1,7 +1,5 @@
 {
   inputs,
-  lib,
-  config,
   pkgs,
   ...
 }:
@@ -49,6 +47,8 @@ in
       nkf
       nixfmt
       neovim # nightly
+      pinentry_mac
+      qmk
       ripgrep
       starship
       tig
