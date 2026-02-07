@@ -11,13 +11,11 @@
 
     taps = [
       "homebrew/bundle"
-      "laishulu/homebrew"
       "qmk/qmk"
       "sanemat/font"
     ];
 
     brews = [
-      "macism"
       "pinentry-mac"
       "qmk/qmk/qmk"
     ];
