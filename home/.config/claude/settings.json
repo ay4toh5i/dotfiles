@@ -97,5 +97,6 @@
   "enabledPlugins": {},
   "preferences": {
     "language": "ja"
-  }
+  },
+  "model": "opus"
 }

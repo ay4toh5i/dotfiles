@@ -13,7 +13,7 @@ snippets:
     snippet: git checkout -b {{branch}}
 
   - name: git checkout new branch from main
-    keyword: gcbm
+    keyword: gcB
     snippet: git checkout -b {{branch}} main
 
   - name: git worktree add
