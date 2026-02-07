@@ -27,6 +27,14 @@ die() {
   exit "{$2:-1}"
 }
 
+# Install Xcode Command Line Tools if not installed (macOS only)
+if [ "$(uname)" = "Darwin" ] && ! xcode-select -p >/dev/null 2>&1; then
+  echo "Installing Xcode Command Line Tools..."
+  xcode-select --install
+  echo "Please complete the installation and re-run this script."
+  exit 0
+fi
+
 if [ ! -d ${DOT_DIRECTORY} ]; then
   echo "Installing..."
 
