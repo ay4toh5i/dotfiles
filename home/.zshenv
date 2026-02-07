@@ -9,3 +9,5 @@ export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+. "$HOME/.local/bin/env"
