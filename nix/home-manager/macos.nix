@@ -27,6 +27,7 @@ in
       bat
       bottom
       delta
+      dust
       eza
       exiftool
       fd

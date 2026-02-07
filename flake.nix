@@ -1,4 +1,7 @@
 {
+  # Basic commands:
+  # nix run .#update
+  # nix store gc
   description = "A very basic flake";
 
   inputs = {
