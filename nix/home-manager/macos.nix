@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -66,4 +67,17 @@ in
   };
 
   programs.home-manager.enable = true;
+
+  programs.gpg = {
+    enable = true;
+    homedir = "${config.xdg.dataHome}/gnupg"; # migrate to XDG dir:  mkdir ~/.local/share/gnupg, mv ~/.gnupg/* ~/.local/share/gnupg/
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 60;
+    maxCacheTtl = 120;
+    pinentry.package = pkgs.pinentry_mac;
+  };
 }
