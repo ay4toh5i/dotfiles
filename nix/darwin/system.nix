@@ -8,6 +8,8 @@
     defaults = {
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";
+
+        # keyboard
         KeyRepeat = 1;
         InitialKeyRepeat = 10;
         ApplePressAndHoldEnabled = false;
@@ -16,6 +18,9 @@
         NSAutomaticPeriodSubstitutionEnabled = false;
         NSAutomaticDashSubstitutionEnabled = true;
         NSAutomaticQuoteSubstitutionEnabled = true;
+
+        # scroll
+        AppleScrollerPagingBehavior = true;
       };
       finder = {
         AppleShowAllFiles = true;
