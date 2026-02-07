@@ -5,7 +5,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 # Instaill zsh plugins which are not managed by antigen
-ZSH_PLUGINS=$HOME/.confg/.zshrc.d/plugins
+ZSH_PLUGINS=$HOME/.config/.zshrc.d/plugins
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
