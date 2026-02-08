@@ -11,6 +11,7 @@
     };
     overlays = [
       inputs.neovim-nightly-overlay.overlays.default
+      (import ../overlays/macism.nix)
     ];
   };
 
@@ -39,6 +40,7 @@
       go-task
       jq
       k6
+      macism
       mise
       nkf
       nixfmt
