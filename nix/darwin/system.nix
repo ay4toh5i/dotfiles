@@ -4,7 +4,6 @@
 
   system = {
     stateVersion = 6;
-    primaryUser = "ayato";
     defaults = {
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";

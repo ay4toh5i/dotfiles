@@ -27,42 +27,71 @@
       flake-utils,
       ...
     }@inputs:
-    flake-utils.lib.eachDefaultSystem(
+    flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        packages.tools = pkgs.buildEnv {
-          name = "tools";
-          paths = [];
-        };
-
         apps.update = {
           type = "app";
-          program = toString (pkgs.writeShellScript "update-script" ''
-            set -e
-            echo "❄️ Updating flake..."
-            nix flake update
-            echo "🏠 Updating home-manager..."
-            nix run home-manager -- switch --flake .#ayato
-            echo "🍎 Updating nix-darwin..."
-            sudo nix run nix-darwin -- switch --flake .#Ayatos-MacBook-Pro
-            echo "✅ Update complete!"
-          '');
+          program = toString (
+            pkgs.writeShellScript "update-script" ''
+              set -e
+              PROFILE=''${1}
+              echo "❄️ Updating flake..."
+              nix flake update
+              echo "🏠 Updating home-manager ($PROFILE)..."
+              nix run home-manager -- switch --flake .#"$PROFILE"
+              echo "🍎 Updating nix-darwin ($PROFILE)..."
+              sudo nix run nix-darwin -- switch --flake .#"$PROFILE"
+              echo "✅ Update complete!"
+            ''
+          );
         };
       }
-    ) // {
+    )
+    // {
       darwinConfigurations = {
-        "Ayatos-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-          modules = [ ./nix/darwin ];
+        "personal@mbp" = nix-darwin.lib.darwinSystem {
+          modules = [
+            ./nix/darwin
+            {
+              system.primaryUser = "ayato";
+            }
+          ];
+        };
+        "work@mbp" = nix-darwin.lib.darwinSystem {
+          modules = [
+            ./nix/darwin
+            {
+              system.primaryUser = "higuchi";
+            }
+          ];
         };
       };
       homeConfigurations = {
-        "ayato" = home-manager.lib.homeManagerConfiguration {
+        "personal@mbp" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."aarch64-darwin";
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./nix/home-manager/macos.nix ];
+          modules = [
+            ./nix/home-manager/macos.nix
+            {
+              home.username = "ayato";
+              home.homeDirectory = "/Users/ayato";
+            }
+          ];
+        };
+        "work@mbp" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./nix/home-manager/macos.nix
+            {
+              home.username = "higuchi";
+              home.homeDirectory = "/Users/higuchi";
+            }
+          ];
         };
       };
     };
