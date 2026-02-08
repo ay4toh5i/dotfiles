@@ -48,6 +48,7 @@
       pinentry_mac
       qmk
       ripgrep
+      rustup
       starship
       tig
       tree
