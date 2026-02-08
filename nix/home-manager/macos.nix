@@ -24,6 +24,7 @@
       bottom
       delta
       dust
+      direnv
       eza
       exiftool
       fd
@@ -54,6 +55,7 @@
       tree
       tmux
       tlrc # tldr
+      tree-sitter
       vim
       yazi
       yq
