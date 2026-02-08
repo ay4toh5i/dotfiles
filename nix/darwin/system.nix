@@ -9,8 +9,8 @@
         AppleInterfaceStyle = "Dark";
 
         # keyboard
-        KeyRepeat = 2;
-        InitialKeyRepeat = 15;
+        KeyRepeat = 3;
+        InitialKeyRepeat = 20;
         ApplePressAndHoldEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = true;
         NSAutomaticCapitalizationEnabled = true;
