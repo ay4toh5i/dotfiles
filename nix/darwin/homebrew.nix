@@ -30,6 +30,7 @@
       "ghostty"
       "google-chrome"
       "jordanbaird-ice@beta"
+      "karabiner-elements"
       "keycastr"
       "multipass"
       "raycast"

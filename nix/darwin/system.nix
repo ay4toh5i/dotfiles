@@ -37,9 +37,11 @@
         show-recents = false;
         orientation = "left";
         magnification = true;
+        showMissionControlGestureEnabled = true;
       };
       trackpad = {
         Clicking = true;
+        Dragging = true;
         TrackpadThreeFingerDrag = true;
         TrackpadTwoFingerDoubleTapGesture = true;
         TrackpadRightClick = true;
