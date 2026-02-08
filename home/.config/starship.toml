@@ -4,5 +4,5 @@ time_format = "%T"
 utc_time_offset = "+9"
 
 [cmd_duration]
-show_notifications = true
+show_notifications = false
 min_time_to_notify = 10_003
