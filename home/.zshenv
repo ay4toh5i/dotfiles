@@ -22,6 +22,11 @@ export GO111MODULE=on
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 
+# Add github access token to mitiate API rate limits
+# # $ gh auth token | pbcopy
+# access-tokens = github.com=abcd
+export NIX_USER_CONF_FILES="${XDG_CONFIG_HOME}/nix/nix.conf:${XDG_CONFIG_HOME}/nix/local.conf"
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
