@@ -10,7 +10,7 @@
 
         # keyboard
         KeyRepeat = 2;
-        InitialKeyRepeat = 12;
+        InitialKeyRepeat = 15;
         ApplePressAndHoldEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = true;
         NSAutomaticCapitalizationEnabled = true;
