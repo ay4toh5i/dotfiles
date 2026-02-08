@@ -64,8 +64,11 @@ if [ $? -ne 0 ]; then
   die "not found: ${DOT_DIRECTORY_HOME}"
 fi
 
-echo "Deploying dotfiles.."
+echo "Removing broken symlinks..."
+find "$HOME" -maxdepth 1 -type l ! -exec test -e {} \; -delete
+find "$HOME/.config" -maxdepth 1 -type l ! -exec test -e {} \; -delete 2>/dev/null || true
 
+echo "Deploying dotfiles..."
 while read -r path; do
   basedir=$(dirname ${path})
 
@@ -76,10 +79,13 @@ while read -r path; do
   ln -snfv "${DOT_DIRECTORY_HOME}/${path#\./}" "${HOME}/${path#\./}"
 done < <(find . -type f -not -path '*/\.git/*' -not -name '\.gitignore')
 
-# install zsh  plugin manger
+# install zsh plugin manger
 curl -L git.io/antigen > antigen.zsh
 
 if ! has "nix"; then
   echo "Installing Nix..."
   curl -L https://nixos.org/nix/install | sh
+
+  echo "Enabling experimental features..."
+  echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf
 fi
