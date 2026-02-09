@@ -18,6 +18,9 @@
         NSAutomaticDashSubstitutionEnabled = true;
         NSAutomaticQuoteSubstitutionEnabled = true;
 
+        # trackpad
+        "com.apple.mouse.tapBehavior" = 1; # Configures the trackpad tap behavior. Mode 1 enables tap to click.
+
         # scroll
         AppleScrollerPagingBehavior = true;
       };
