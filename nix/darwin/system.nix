@@ -9,8 +9,8 @@
         AppleInterfaceStyle = "Dark";
 
         # keyboard
-        KeyRepeat = 3;
-        InitialKeyRepeat = 20;
+        KeyRepeat = 2;
+        InitialKeyRepeat = 15;
         ApplePressAndHoldEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = true;
         NSAutomaticCapitalizationEnabled = true;
@@ -45,7 +45,8 @@
       trackpad = {
         Clicking = true;
         Dragging = true;
-        TrackpadThreeFingerDrag = true;
+        DragLock = false;
+        TrackpadThreeFingerDrag = false; # Disable three-finger drag
         TrackpadTwoFingerDoubleTapGesture = true;
         TrackpadRightClick = true;
       };

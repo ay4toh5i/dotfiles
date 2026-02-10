@@ -28,6 +28,7 @@
       eza
       exiftool
       fd
+      fastfetch
       fzf
       ffmpeg
       gh

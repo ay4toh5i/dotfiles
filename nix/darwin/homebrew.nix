@@ -33,6 +33,7 @@
       "karabiner-elements"
       "keycastr"
       "multipass"
+      "postman"
       "raycast"
       "rectangle-pro"
       "spotify"
