@@ -15,7 +15,6 @@ return {
         'gopls',
         'golangci_lint_ls',
         'html',
-        'markdownlint',
         'nil_ls',
         'jsonls',
         'lua_ls',
@@ -24,7 +23,6 @@ return {
         'terraformls',
         'ts_ls',
         'yamlls',
-        'yamllint',
       },
       automatic_enable = {
         exclude = { 'denols', 'vtsls', 'ts_ls' },
