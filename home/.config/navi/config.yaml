@@ -1,0 +1,4 @@
+cheats:
+  paths:
+    - ~/.config/navi/cheats/
+    - ~/.local/share/navi/cheats/

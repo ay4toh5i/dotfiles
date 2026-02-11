@@ -1,0 +1,16 @@
+% common
+
+# why is this running?:w
+witr 
+
+# share files within the local network
+qrcp
+
+# show system information
+fastfetch
+
+# show system activity
+btop
+
+# show disk usage
+dust
