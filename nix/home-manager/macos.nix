@@ -20,8 +20,10 @@
     stateVersion = "26.05";
 
     packages = with pkgs; [
+      ast-grep
       bat
       bottom
+      btop
       delta
       dust
       direnv
@@ -40,13 +42,17 @@
       gibo
       ghq
       go-task
+      qrcp # https://github.com/claudiodangelis/qrcp
+      helix
       jq
       k6
       macism
       mise
+      navi # https://github.com/denisidoro/navi#cheatsheet-syntax
       nkf
       nixfmt
       neovim # nightly
+      onefetch
       pinentry_mac
       qmk
       ripgrep
@@ -62,6 +68,7 @@
       yq
       yubikey-manager
       wezterm
+      witr # https://github.com/pranshuparmar/witr
       zoxide
     ];
   };
