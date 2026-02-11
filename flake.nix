@@ -44,7 +44,7 @@
               echo "🏠 Updating home-manager ($PROFILE)..."
               nix run home-manager -- switch --flake .#"$PROFILE"
               echo "🍎 Updating nix-darwin ($PROFILE)..."
-              sudo nix run nix-darwin -- switch --flake .#"$PROFILE"
+              sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
               echo "✅ Update complete!"
             ''
           );
