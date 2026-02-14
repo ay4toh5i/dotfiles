@@ -41,6 +41,7 @@
       git
       gibo
       ghq
+      gh-dash
       go-task
       qrcp # https://github.com/claudiodangelis/qrcp
       helix
