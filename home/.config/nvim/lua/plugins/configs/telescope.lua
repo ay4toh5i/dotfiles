@@ -1,6 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
-  branch = '0.1.x',
+  version = '*',
   config = function()
     local actions = require('telescope.actions')
     local egrep_actions = require("telescope._extensions.egrepify.actions")
