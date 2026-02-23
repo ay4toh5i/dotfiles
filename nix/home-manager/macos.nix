@@ -69,6 +69,7 @@
       yq
       yubikey-manager
       wezterm
+      wait4x
       witr # https://github.com/pranshuparmar/witr
       zoxide
     ];
