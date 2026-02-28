@@ -45,6 +45,7 @@
       go-task
       qrcp # https://github.com/claudiodangelis/qrcp
       helix
+      hl-log-viewer
       jq
       k6
       macism
@@ -55,6 +56,7 @@
       neovim # nightly
       onefetch
       pinentry_mac
+      postgresql
       qmk
       ripgrep
       rustup
