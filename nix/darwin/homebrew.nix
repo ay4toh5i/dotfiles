@@ -19,6 +19,7 @@
     casks = [
       "alt-tab"
       "arc"
+      "arto-app/tap/arto"
       "chatgpt"
       "cleanshot"
       "claude"
