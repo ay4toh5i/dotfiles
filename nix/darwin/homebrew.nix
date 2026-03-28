@@ -12,6 +12,7 @@
     taps = [
       "homebrew/bundle"
       "sanemat/font"
+      "arto-app/tap"
     ];
 
     brews = [];
@@ -19,7 +20,7 @@
     casks = [
       "alt-tab"
       "arc"
-      "arto-app/tap/arto"
+      "arto"
       "chatgpt"
       "cleanshot"
       "claude"
@@ -37,6 +38,7 @@
       "postman"
       "raycast"
       "rectangle-pro"
+      "secretive"
       "spotify"
       "tableplus"
       "visual-studio-code"
