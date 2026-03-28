@@ -55,6 +55,7 @@
       nixfmt
       neovim # nightly
       onefetch
+      ollama
       pinentry_mac
       postgresql
       qmk

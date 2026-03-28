@@ -9,6 +9,7 @@ java = "lts"
 # AI Coding Assistants
 claude = "latest"
 codex = "latest"
+"github:anomalyco/opencode" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["terraform"]
