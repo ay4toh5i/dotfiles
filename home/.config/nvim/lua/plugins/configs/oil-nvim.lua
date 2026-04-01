@@ -16,7 +16,7 @@ return {
         win_options = {
           winblend = 0, -- for transparent background
         },
-      }
+      },
     })
 
     local oil = require("oil")
@@ -24,6 +24,5 @@ return {
   end,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "benomahony/oil-git.nvim",
   },
 }
