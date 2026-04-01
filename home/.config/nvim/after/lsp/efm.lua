@@ -16,7 +16,8 @@ return {
         {
           prefix = "textlint",
           lintCommand =
-          "deno run -A npm:textlint@latest --no-color --format unix --stdin --stdin-filename ${INPUT}",
+          -- "deno run -A npm:textlint@latest --no-color --format unix --stdin --stdin-filename ${INPUT}",
+          "npx textlint@latest --no-color --format unix --stdin --stdin-filename ${INPUT}",
           lintStdin = true,
           lintAfterOpen = true,
           lintFormats = {
