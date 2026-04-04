@@ -49,6 +49,43 @@
             ''
           );
         };
+        apps.hm = {
+          type = "app";
+          program = toString (
+            pkgs.writeShellScript "hm-script" ''
+              set -e
+              PROFILE=''${1}
+              echo "🏠 Switching home-manager ($PROFILE)..."
+              nix run home-manager -- switch --flake .#"$PROFILE"
+              echo "✅ Done!"
+            ''
+          );
+        };
+        apps.darwin = {
+          type = "app";
+          program = toString (
+            pkgs.writeShellScript "darwin-script" ''
+              set -e
+              PROFILE=''${1}
+              echo "🍎 Switching nix-darwin ($PROFILE)..."
+              sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
+              echo "✅ Done!"
+            ''
+          );
+        };
+        apps.gc = {
+          type = "app";
+          program = toString (
+            pkgs.writeShellScript "gc-script" ''
+              set -e
+              echo "🧹 Deleting old generations..."
+              nix profile wipe-history --older-than 7d 2>/dev/null || true
+              echo "🗑️ Running garbage collection..."
+              nix store gc
+              echo "✅ GC complete!"
+            ''
+          );
+        };
       }
     )
     // {
