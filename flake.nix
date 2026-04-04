@@ -95,6 +95,7 @@
             ./nix/darwin
             {
               system.primaryUser = "ayato";
+              services.openssh.enable = true;
             }
           ];
         };
@@ -103,6 +104,7 @@
             ./nix/darwin
             {
               system.primaryUser = "higuchi";
+              services.openssh.enable = false;
             }
           ];
         };

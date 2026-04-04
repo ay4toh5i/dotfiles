@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
 
@@ -55,5 +55,21 @@
       enableKeyMapping = true;
       remapCapsLockToControl = true;
     };
+  };
+
+  services.openssh = {
+    extraConfig = ''
+      PermitRootLogin no
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      PubkeyAuthentication yes
+      AllowUsers ${config.system.primaryUser}
+    '';
+  };
+
+  users.users.${config.system.primaryUser} = {
+    openssh.authorizedKeys.keys = [
+      "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPlsTDTwoXr0yRw4hoXeVgAAFQ6MN/MPUAI36gIdze10N3S5lQFa03N6SubnQAeu05sGYC53Lh1kw4XjBK1OP80="
+    ];
   };
 }
