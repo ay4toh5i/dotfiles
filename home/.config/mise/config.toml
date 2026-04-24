@@ -10,6 +10,7 @@ java = "lts"
 claude = "latest"
 codex = "latest"
 "github:anomalyco/opencode" = "latest"
+1password = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["terraform"]

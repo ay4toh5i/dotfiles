@@ -35,6 +35,7 @@
       ffmpeg
       gh
       gcc
+      gettext
       gawk
       gnused
       gnupg
@@ -50,6 +51,7 @@
       k6
       macism
       mise
+      miller
       navi # https://github.com/denisidoro/navi#cheatsheet-syntax
       nkf
       nixfmt
