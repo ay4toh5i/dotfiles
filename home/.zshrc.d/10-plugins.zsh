@@ -1,9 +1,3 @@
-source ~/dotfiles/home/antigen.zsh
-antigen bundle zsh-users/zsh-completions
-antigen bundle zdharma-continuum/fast-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen apply
-
 # Instaill zsh plugins which are not managed by antigen
 ZSH_PLUGINS=$HOME/.config/.zshrc.d/plugins
 
@@ -26,3 +20,9 @@ fi
 if [[ -f "$ZSH_PLUGINS/zeno/zeno.zsh" ]]; then
   source $ZSH_PLUGINS/zeno/zeno.zsh
 fi
+
+source ~/dotfiles/home/antigen.zsh
+antigen bundle zsh-users/zsh-completions
+antigen bundle zdharma-continuum/fast-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen apply
