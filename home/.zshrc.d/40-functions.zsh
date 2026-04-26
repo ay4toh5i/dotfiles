@@ -33,7 +33,9 @@ zle -N changeDirectory
 bindkey '^l' changeDirectory
 
 function cd2GitRepository() {
-  cd $(ghq list --full-path | fzf --prompt "GIT REPO ")
+  local selected
+  selected=$(ghq list --full-path | fzf --prompt "GIT REPO ")
+  [[ -n $selected ]] && cd "$selected"
   zle accept-line
 }
 
