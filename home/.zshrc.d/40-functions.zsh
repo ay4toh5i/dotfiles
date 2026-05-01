@@ -35,7 +35,10 @@ bindkey '^l' changeDirectory
 function cd2GitRepository() {
   local selected
   selected=$(ghq list --full-path | fzf --prompt "GIT REPO ")
-  [[ -n $selected ]] && cd "$selected"
+  if [[ -n $selected ]]; then
+    cd "$selected"
+    [[ -n $TMUX ]] && tmux rename-window "$(basename $selected)"
+  fi
   zle accept-line
 }
 
