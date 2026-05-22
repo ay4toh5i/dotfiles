@@ -111,6 +111,19 @@ return {
       desc = "Grep files",
     },
     {
+      "<leader>fg",
+      function()
+        local saved = vim.fn.getreg('"')
+        vim.cmd('normal! "vy')
+        local selected = vim.fn.getreg('v')
+        vim.fn.setreg('"', saved)
+        require('telescope').extensions.egrepify.egrepify({ default_text = selected })
+      end,
+      mode = "v",
+      silent = true,
+      desc = "Grep selected text",
+    },
+    {
       "<leader>fb",
       ":Telescope buffers<CR>",
       silent = true,
