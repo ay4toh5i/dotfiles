@@ -41,7 +41,6 @@
       "secretive"
       "spotify"
       "tableplus"
-      "visual-studio-code"
       "zoom"
     ];
   };
