@@ -19,6 +19,7 @@ local languages = {
   'markdown',
   'markdown_inline',
   'json',
+  'jsonnet',
   'yaml',
   'toml',
   'regex',
