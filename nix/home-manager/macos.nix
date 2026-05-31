@@ -47,6 +47,7 @@
       qrcp # https://github.com/claudiodangelis/qrcp
       helix
       hl-log-viewer
+      jnv
       jq
       k6
       macism

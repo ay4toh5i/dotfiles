@@ -35,7 +35,6 @@
       "karabiner-elements"
       "keycastr"
       "macskk"
-      "multipass"
       "postman"
       "raycast"
       "rectangle-pro"
