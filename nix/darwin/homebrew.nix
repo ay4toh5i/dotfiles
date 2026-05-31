@@ -34,6 +34,7 @@
       "jordanbaird-ice@beta"
       "karabiner-elements"
       "keycastr"
+      "macskk"
       "multipass"
       "postman"
       "raycast"
