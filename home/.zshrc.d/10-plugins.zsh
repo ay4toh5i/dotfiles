@@ -26,3 +26,8 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle zdharma-continuum/fast-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
+
+autoload -Uz add-zle-hook-widget
+clear_autosuggest() { POSTDISPLAY='' }
+add-zle-hook-widget line-finish clear_autosuggest
+
