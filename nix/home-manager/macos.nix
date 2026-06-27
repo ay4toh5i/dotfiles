@@ -5,6 +5,10 @@
   ...
 }:
 {
+  imports = [
+    inputs.zen-browser.homeModules.beta
+  ];
+
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -82,6 +86,11 @@
   };
 
   programs.home-manager.enable = true;
+ 
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = false;
+  };
 
   programs.gpg = {
     enable = true;
