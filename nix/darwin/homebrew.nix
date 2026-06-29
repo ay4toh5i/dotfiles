@@ -24,6 +24,7 @@
       "chatgpt"
       "cleanshot"
       "claude"
+      "duckdb"
       "font-0xproto-nerd-font"
       "font-hackgen-nerd"
       "font-plemol-jp-nf"
