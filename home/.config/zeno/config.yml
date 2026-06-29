@@ -18,7 +18,7 @@ snippets:
 
   - name: git worktree add
     keyword: gw
-    snippet: BRANCH={{branch}} && git worktree add ./worktrees/$BRANCH -b $BRANCH main && cd worktrees/$BRANCH
+    snippet: BRANCH={{branch}} && ROOT=$(git worktree list --porcelain | head -1 | sed 's/^worktree //') && git worktree add "$ROOT/worktrees/$BRANCH" -b $BRANCH main && cd "$ROOT/worktrees/$BRANCH"
 
   - name: git worktree cd (fzf)
     keyword: gwm
