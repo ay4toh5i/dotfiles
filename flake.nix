@@ -57,6 +57,20 @@
             ''
           );
         };
+        apps.switch = {
+          type = "app";
+          program = toString (
+            pkgs.writeShellScript "switch-script" ''
+              set -e
+              PROFILE=''${1}
+              echo "🏠 Switching home-manager ($PROFILE)..."
+              nix run home-manager -- switch --flake .#"$PROFILE"
+              echo "🍎 Switching nix-darwin ($PROFILE)..."
+              sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
+              echo "✅ Done!"
+            ''
+          );
+        };
         apps.hm = {
           type = "app";
           program = toString (

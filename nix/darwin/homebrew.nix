@@ -12,10 +12,15 @@
     taps = [
       "homebrew/bundle"
       "sanemat/font"
-      "arto-app/tap"
+      {
+        name = "arto-app/tap";
+        trusted = true;
+      }
     ];
 
-    brews = [];
+    brews = [
+      "duckdb"
+    ];
 
     casks = [
       "alt-tab"
@@ -24,7 +29,6 @@
       "chatgpt"
       "cleanshot"
       "claude"
-      "duckdb"
       "font-0xproto-nerd-font"
       "font-hackgen-nerd"
       "font-plemol-jp-nf"
@@ -32,6 +36,7 @@
       "gitify"
       "ghostty"
       "google-chrome"
+      "homerow"
       "jordanbaird-ice@beta"
       "karabiner-elements"
       "keycastr"
