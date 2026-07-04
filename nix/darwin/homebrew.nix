@@ -20,6 +20,7 @@
 
     brews = [
       "duckdb"
+      "herdr"
     ];
 
     casks = [

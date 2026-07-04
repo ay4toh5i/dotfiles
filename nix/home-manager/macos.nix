@@ -86,7 +86,7 @@
   };
 
   programs.home-manager.enable = true;
- 
+
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = false;
