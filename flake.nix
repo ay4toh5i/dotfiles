@@ -137,6 +137,7 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./nix/home-manager/macos.nix
+            ./nix/home-manager/zen-browser/pins-personal.nix
             {
               home.username = "ayato";
               home.homeDirectory = "/Users/ayato";
@@ -148,6 +149,7 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./nix/home-manager/macos.nix
+            ./nix/home-manager/zen-browser/pins-work.nix
             {
               home.username = "higuchi";
               home.homeDirectory = "/Users/higuchi";

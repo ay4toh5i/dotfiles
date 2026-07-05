@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    inputs.zen-browser.homeModules.beta
+    ./zen-browser
   ];
 
   nixpkgs = {
@@ -86,11 +86,6 @@
   };
 
   programs.home-manager.enable = true;
-
-  programs.zen-browser = {
-    enable = true;
-    setAsDefaultBrowser = false;
-  };
 
   programs.gpg = {
     enable = true;
