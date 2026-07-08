@@ -94,7 +94,25 @@
     "command": "npx -y ccusage statusline",
     "padding": 0
   },
-  "enabledPlugins": {},
+  "enabledPlugins": {
+    "crit@crit": true
+  },
+  "extraKnownMarketplaces": {
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    },
+    "crit": {
+      "source": {
+        "source": "github",
+        "repo": "tomasz-tomczyk/crit"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "tui": "fullscreen",
   "preferences": {
     "language": "ja"
   },

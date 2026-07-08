@@ -19,6 +19,7 @@
     ];
 
     brews = [
+      "crit"
       "duckdb"
       "herdr"
     ];
