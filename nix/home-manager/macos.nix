@@ -44,6 +44,7 @@
       gnused
       gnupg
       git
+      gitui
       gibo
       ghq
       gh-dash
