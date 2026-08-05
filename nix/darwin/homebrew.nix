@@ -49,6 +49,7 @@
       "secretive"
       "spotify"
       "tableplus"
+      "thebrowsercompany-dia"
       "zoom"
     ];
   };
