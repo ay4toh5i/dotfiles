@@ -24,6 +24,7 @@
     stateVersion = "26.05";
 
     packages = with pkgs; [
+      alacritty
       ast-grep
       bat
       bottom
