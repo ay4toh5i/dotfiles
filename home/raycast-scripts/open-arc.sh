@@ -3,7 +3,7 @@
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Open Arc(No Reduced Motion)
-# @raycast.mode inline
+# @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon https://resources.arc.net/hc/theming_assets/01HZPQZ0F2XCQNFEFY41C54GGW
