@@ -16,14 +16,12 @@
         id = "729a78ec-1d9e-47c5-83ec-d84f207c0649";
         url = "https://www.amazon.co.jp/";
         folderParentId = pins."Private".id;
-        isEssential = true;
         position = 101;
       };
       "Prime Video" = {
         id = "d87824e9-754c-435a-a02b-1bac0c06cd87";
         url = "https://www.amazon.co.jp/Amazon-Video";
         folderParentId = pins."Private".id;
-        isEssential = true;
         position = 102;
       };
       "GIGAZINE" = {
