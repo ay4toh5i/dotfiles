@@ -43,6 +43,7 @@
       "karabiner-elements"
       "keycastr"
       "macskk"
+      "notchnook"
       "postman"
       "raycast"
       "rectangle-pro"
