@@ -29,6 +29,14 @@
       url = "github:anthropics/skills";
       flake = false;
     };
+    mattpocock-skills = {
+      url = "github:mattpocock/skills";
+      flake = false;
+    };
+    herdr-skills = {
+      url = "github:herdrdev/herdr/v0.8.2";
+      flake = false;
+    };
   };
 
   outputs =

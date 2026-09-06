@@ -97,6 +97,23 @@
         "type": "github"
       }
     },
+    "herdr-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787161794,
+        "narHash": "sha256-sEGIN3dLZasaHob3EHscWBCIQHflMQVchYmzgsETDk4=",
+        "owner": "herdrdev",
+        "repo": "herdr",
+        "rev": "9eb521456ac0d19d3ab3d9d7cea3cca10baa8a4c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "herdrdev",
+        "ref": "v0.8.2",
+        "repo": "herdr",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -135,6 +152,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "mattpocock-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788511407,
+        "narHash": "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=",
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "3cca18b368ae95cdbdebbff572ccafa662551015",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattpocock",
+        "repo": "skills",
         "type": "github"
       }
     },
@@ -248,7 +281,9 @@
         "agent-skills": "agent-skills",
         "anthropic-skills": "anthropic-skills",
         "flake-utils": "flake-utils",
+        "herdr-skills": "herdr-skills",
         "home-manager": "home-manager_2",
+        "mattpocock-skills": "mattpocock-skills",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",

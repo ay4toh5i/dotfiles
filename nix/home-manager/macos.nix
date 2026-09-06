@@ -6,6 +6,8 @@
 }:
 {
   imports = [
+    inputs.agent-skills.homeManagerModules.default
+    ./agent-skills.nix
     ./zen-browser
   ];
 
