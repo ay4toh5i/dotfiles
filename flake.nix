@@ -24,6 +24,11 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    agent-skills.url = "github:Kyure-A/agent-skills-nix";
+    anthropic-skills = {
+      url = "github:anthropics/skills";
+      flake = false;
+    };
   };
 
   outputs =
