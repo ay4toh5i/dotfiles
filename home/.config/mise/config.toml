@@ -3,7 +3,7 @@
 deno = "latest"
 node = "lts"
 go = "latest"
-ruby = "3.4"
+ruby = "4"
 java = "lts"
 
 # AI Coding Assistants
@@ -14,3 +14,6 @@ codex = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["terraform"]
+
+[settings.ruby]
+compile = false
