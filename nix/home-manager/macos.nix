@@ -57,6 +57,7 @@
       jq
       k6
       macism
+      mado
       mise
       miller
       navi # https://github.com/denisidoro/navi#cheatsheet-syntax
