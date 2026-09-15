@@ -52,6 +52,16 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        # Unauthenticated GitHub API requests are rate limited per IP, which makes
+        # `nix flake update` fail with HTTP 403. Reuse the gh CLI token when available.
+        ghTokenPrelude = ''
+          if command -v gh > /dev/null 2>&1; then
+            GH_API_TOKEN=$(gh auth token 2> /dev/null || true)
+            if [ -n "$GH_API_TOKEN" ]; then
+              export NIX_CONFIG="access-tokens = github.com=$GH_API_TOKEN"
+            fi
+          fi
+        '';
       in
       {
         apps.update = {
@@ -60,12 +70,13 @@
             pkgs.writeShellScript "update-script" ''
               set -e
               PROFILE=''${1}
+              ${ghTokenPrelude}
               echo "❄️ Updating flake..."
               nix flake update
               echo "🏠 Updating home-manager ($PROFILE)..."
               nix run home-manager -- switch --flake .#"$PROFILE"
               echo "🍎 Updating nix-darwin ($PROFILE)..."
-              sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
+              sudo NIX_CONFIG="''${NIX_CONFIG-}" nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
               echo "✅ Update complete!"
             ''
           );
@@ -76,10 +87,11 @@
             pkgs.writeShellScript "switch-script" ''
               set -e
               PROFILE=''${1}
+              ${ghTokenPrelude}
               echo "🏠 Switching home-manager ($PROFILE)..."
               nix run home-manager -- switch --flake .#"$PROFILE"
               echo "🍎 Switching nix-darwin ($PROFILE)..."
-              sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
+              sudo NIX_CONFIG="''${NIX_CONFIG-}" nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
               echo "✅ Done!"
             ''
           );
@@ -90,6 +102,7 @@
             pkgs.writeShellScript "hm-script" ''
               set -e
               PROFILE=''${1}
+              ${ghTokenPrelude}
               echo "🏠 Switching home-manager ($PROFILE)..."
               nix run home-manager -- switch --flake .#"$PROFILE"
               echo "✅ Done!"
@@ -102,8 +115,9 @@
             pkgs.writeShellScript "darwin-script" ''
               set -e
               PROFILE=''${1}
+              ${ghTokenPrelude}
               echo "🍎 Switching nix-darwin ($PROFILE)..."
-              sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
+              sudo NIX_CONFIG="''${NIX_CONFIG-}" nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .#"$PROFILE"
               echo "✅ Done!"
             ''
           );
