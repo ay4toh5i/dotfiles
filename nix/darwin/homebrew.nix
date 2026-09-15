@@ -26,6 +26,7 @@
 
     casks = [
       "alt-tab"
+      "android-studio"
       "arc"
       "arto"
       "chatgpt"
