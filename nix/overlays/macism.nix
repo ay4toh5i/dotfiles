@@ -1,13 +1,13 @@
 final: prev: {
-  macism = final.stdenv.mkDerivation {
+  macism = final.stdenv.mkDerivation rec {
     pname = "macism";
-    version = "v3.0.10";
+    version = "v3.1.1";
 
     src = final.fetchFromGitHub {
       owner = "laishulu";
       repo = "macism";
-      rev = "master";
-      hash = "sha256-DbrPjaaM4FNtoMn65uDc/uR5V+DbqZUgD3j5kYLz5KA=";
+      rev = version;
+      hash = "sha256-YuOFhCd+hc81x+59EVXPo9JZZSA2JJX0zNnU3UlM7Ts=";
     };
 
     nativeBuildInputs = [ final.swift ];
