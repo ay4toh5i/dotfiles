@@ -66,6 +66,7 @@
       nkf
       nixfmt
       neovim # nightly
+      omp
       onefetch
       ollama
       pinentry_mac
