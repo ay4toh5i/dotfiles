@@ -33,6 +33,14 @@
       url = "github:mattpocock/skills";
       flake = false;
     };
+    natural-japanese-skills = {
+      url = "github:coji/natural-japanese";
+      flake = false;
+    };
+    crit-skills = {
+      url = "github:tomasz-tomczyk/crit";
+      flake = false;
+    };
     herdr-skills = {
       url = "github:herdrdev/herdr/v0.8.2";
       flake = false;

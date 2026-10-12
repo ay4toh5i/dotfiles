@@ -79,6 +79,7 @@
       tmux
       tlrc # tldr
       tree-sitter
+      uv
       vim
       yazi
       yq
