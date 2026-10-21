@@ -61,9 +61,10 @@ return {
   text_background_opacity = 1.0, -- Make text background fully opaque to keep text color consistent
   font_size = 14.0,
   font = wezterm.font_with_fallback {
-    '0xProto Nerd Font',
+    -- 'UDEV Gothic NF',
+    -- 'Moralerspace Argon',
+    'PlemolJP Console NF',
     'JetBrains Mono',
-    "PlemolJP Console NF",
   },
   keys = keys,
   hide_tab_bar_if_only_one_tab = true,
