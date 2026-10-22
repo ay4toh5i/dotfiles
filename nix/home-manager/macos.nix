@@ -66,6 +66,7 @@
       }))
       miller
       navi # https://github.com/denisidoro/navi#cheatsheet-syntax
+      nh
       nkf
       nixfmt
       neovim # nightly
