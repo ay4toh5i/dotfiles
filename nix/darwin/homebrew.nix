@@ -42,7 +42,6 @@
       "ghostty"
       "google-chrome"
       "homerow"
-      "jordanbaird-ice@beta"
       "karabiner-elements"
       "keycastr"
       "macskk"
@@ -53,6 +52,7 @@
       "spotify"
       "tableplus"
       "thebrowsercompany-dia"
+      "thaw@beta"
       "zoom"
     ];
   };
