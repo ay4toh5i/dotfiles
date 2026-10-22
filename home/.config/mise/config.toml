@@ -4,6 +4,7 @@ deno = "latest"
 node = "lts"
 go = "latest"
 ruby = "4"
+uv = "latest"
 java = "lts"
 
 # AI Coding Assistants

@@ -1,6 +1,23 @@
-{ config, ... }:
+{ config, inputs, pkgs, ... }:
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  # Keep TLS packages current without moving the rest of the system to master.
+  nixpkgs.overlays = [
+    (final: _:
+      let
+        tls = inputs.nixpkgs-tls.legacyPackages.${final.stdenv.hostPlatform.system};
+      in
+      {
+        inherit (tls) curl cacert;
+      })
+  ];
+
+  environment.systemPackages = [
+    pkgs.curl
+    pkgs.cacert
+  ];
+  environment.variables.CURL_CA_BUNDLE = "/etc/ssl/certs/ca-certificates.crt";
 
   system = {
     stateVersion = 6;

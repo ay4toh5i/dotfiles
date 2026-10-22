@@ -6,6 +6,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-tls.url = "github:NixOS/nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +24,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    mise = {
+      url = "github:jdx/mise";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     agent-skills.url = "github:Kyure-A/agent-skills-nix";
     anthropic-skills = {
@@ -148,6 +154,7 @@
     // {
       darwinConfigurations = {
         "personal@mbp" = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             ./nix/darwin
             {
@@ -157,6 +164,7 @@
           ];
         };
         "work@mbp" = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             ./nix/darwin
             {

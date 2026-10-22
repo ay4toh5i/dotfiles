@@ -60,7 +60,10 @@
       k6
       macism
       mado
-      mise
+      (inputs.mise.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+        # The upstream macOS process-list test needs ps in the build sandbox.
+        nativeCheckInputs = (old.nativeCheckInputs or [ ]) ++ [ pkgs.darwin.ps ];
+      }))
       miller
       navi # https://github.com/denisidoro/navi#cheatsheet-syntax
       nkf
@@ -80,7 +83,6 @@
       tmux
       tlrc # tldr
       tree-sitter
-      uv
       vim
       yazi
       yq
