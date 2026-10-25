@@ -16,6 +16,10 @@
         name = "arto-app/tap";
         trusted = true;
       }
+      {
+        name = "yksr-melt/Meltype";
+        clone_target = "https://github.com/yksr-melt/Meltype.git";
+      }
     ];
 
     brews = [
@@ -45,6 +49,7 @@
       "karabiner-elements"
       "keycastr"
       "macskk"
+      "muse-code"
       "postman"
       "raycast"
       "rectangle-pro"
@@ -53,6 +58,7 @@
       "tableplus"
       "thebrowsercompany-dia"
       "thaw@beta"
+      "yksr-melt/Meltype/meltype"
       "zoom"
     ];
   };
