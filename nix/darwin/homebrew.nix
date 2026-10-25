@@ -26,6 +26,7 @@
       "crit"
       "duckdb"
       "herdr"
+      "ollama"
     ];
 
     casks = [
@@ -49,14 +50,12 @@
       "karabiner-elements"
       "keycastr"
       "macskk"
-      "muse-code"
       "postman"
       "raycast"
       "rectangle-pro"
       "secretive"
       "spotify"
       "tableplus"
-      "thebrowsercompany-dia"
       "thaw@beta"
       "yksr-melt/Meltype/meltype"
       "zoom"

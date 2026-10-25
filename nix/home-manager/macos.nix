@@ -72,7 +72,6 @@
       neovim # nightly
       omp
       onefetch
-      ollama
       pinentry_mac
       postgresql
       qmk
