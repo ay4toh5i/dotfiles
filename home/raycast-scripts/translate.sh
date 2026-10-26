@@ -9,6 +9,8 @@
 
 set -euo pipefail
 
+export LANG=ja_JP.UTF-8
+
 ollama run gemma4:e2b --think=false \
   --keepalive 5m \
   "Translate the following text between Japanese and English. Detect the source language automatically. Preserve technical terminology, proper nouns, and formatting. Output only the translation, without explanations: $(pbpaste)"
