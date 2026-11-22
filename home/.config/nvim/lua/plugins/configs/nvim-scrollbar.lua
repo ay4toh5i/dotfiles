@@ -1,12 +1,11 @@
 return {
   'petertriho/nvim-scrollbar',
-  branch = 'v1',
   event = "VeryLazy",
   config = function()
     require('scrollbar').setup({
-      handlers = {
+      providers = {
         gitsigns = true,
-      }
+      },
     })
   end,
   dependencies = {
