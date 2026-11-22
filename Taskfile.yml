@@ -1,0 +1,66 @@
+version: '3'
+
+vars:
+  PROFILE: personal@mbp
+  KEEP_SINCE: 7d
+  KEEP: '1'
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+
+  nix:switch:
+    desc: Apply the locked configuration with Home Manager, then nix-darwin
+    cmds:
+      - task: nix:hm
+      - task: nix:darwin
+
+  nix:update:
+    desc: Update flake.lock and apply the configuration with Home Manager, then nix-darwin
+    cmds:
+      - task: nix:_nh
+        vars:
+          ARGS: home switch {{.ROOT_DIR | shellQuote}} --configuration {{.PROFILE | shellQuote}} --update {{.CLI_ARGS}}
+      - task: nix:darwin
+
+  nix:hm:
+    desc: Apply the Home Manager configuration
+    cmds:
+      - task: nix:_nh
+        vars:
+          ARGS: home switch {{.ROOT_DIR | shellQuote}} --configuration {{.PROFILE | shellQuote}} {{.CLI_ARGS}}
+
+  nix:darwin:
+    desc: Apply the nix-darwin configuration (nh handles privilege escalation)
+    cmds:
+      - task: nix:_nh
+        vars:
+          ARGS: darwin switch {{.ROOT_DIR | shellQuote}} --hostname {{.PROFILE | shellQuote}} {{.CLI_ARGS}}
+
+  nix:gc:
+    desc: Remove old user generations and unreferenced Nix store paths
+    preconditions:
+      - sh: command -v nh >/dev/null 2>&1
+        msg: nh is required
+    cmds:
+      - nh clean user --keep-since {{.KEEP_SINCE | shellQuote}} --keep {{.KEEP | shellQuote}} --no-gcroots --no-direnv {{.CLI_ARGS}}
+
+  nix:_nh:
+    internal: true
+    requires:
+      vars: [ARGS]
+    preconditions:
+      - sh: command -v nh >/dev/null 2>&1
+        msg: nh is required
+    cmds:
+      - |
+        if command -v gh >/dev/null 2>&1; then
+          nix_github_token="$(gh auth token 2>/dev/null || true)"
+          if [ -n "$nix_github_token" ]; then
+            export NIX_CONFIG="${NIX_CONFIG-}
+        access-tokens = github.com=$nix_github_token"
+          fi
+        fi
+        nh {{.ARGS}}
