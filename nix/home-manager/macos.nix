@@ -61,6 +61,11 @@
       macism
       mado
       (inputs.mise.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+        # The cargo setup hook requires system libraries for aws-lc-sys and zstd-sys.
+        buildInputs = (old.buildInputs or [ ]) ++ [
+          pkgs.aws-lc
+          pkgs.zstd
+        ];
         # The upstream macOS process-list test needs ps in the build sandbox.
         nativeCheckInputs = (old.nativeCheckInputs or [ ]) ++ [ pkgs.darwin.ps ];
       }))
